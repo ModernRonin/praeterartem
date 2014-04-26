@@ -1,0 +1,5 @@
+*.ncrunchproject
+*.user
+*.suo
+bin
+obj
