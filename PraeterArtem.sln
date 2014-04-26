@@ -5,8 +5,29 @@ VisualStudioVersion = 12.0.30110.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{7B54C0DD-0CBC-41C0-86EF-E8B6B298E026}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModernRonin.PraeterArtem", "libraries\ModernRonin.PraeterArtem\ModernRonin.PraeterArtem.csproj", "{1683F54E-6F1E-4387-A544-5B6510E40B4B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModernRonin.PraeterArtem.UnitTests", "tests\ModernRonin.PraeterArtem.UnitTests\ModernRonin.PraeterArtem.UnitTests.csproj", "{571863C8-3152-4342-A14C-31E6F40308D0}"
+EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1683F54E-6F1E-4387-A544-5B6510E40B4B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1683F54E-6F1E-4387-A544-5B6510E40B4B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1683F54E-6F1E-4387-A544-5B6510E40B4B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1683F54E-6F1E-4387-A544-5B6510E40B4B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{571863C8-3152-4342-A14C-31E6F40308D0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{571863C8-3152-4342-A14C-31E6F40308D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{571863C8-3152-4342-A14C-31E6F40308D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{571863C8-3152-4342-A14C-31E6F40308D0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{571863C8-3152-4342-A14C-31E6F40308D0} = {7B54C0DD-0CBC-41C0-86EF-E8B6B298E026}
 	EndGlobalSection
 EndGlobal
