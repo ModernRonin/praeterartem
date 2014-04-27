@@ -59,6 +59,7 @@
     <Compile Include="Functional\IntegerExtensionsTests.cs" />
     <Compile Include="Functional\NullTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Xml\XElementEqualityComparerTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\libraries\ModernRonin.PraeterArtem\ModernRonin.PraeterArtem.csproj">
