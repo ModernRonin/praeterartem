@@ -6,9 +6,10 @@ using System.Globalization;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.CompilerServices;
+using FluentAssertions;
 using ModernRonin.PraeterArtem.Annotations;
 using ModernRonin.PraeterArtem.Reflection;
-using NUnit.Framework;
+using Xunit.Sdk;
 
 namespace ModernRonin.PraeterArtem.UnitTests._MetaAssertions_
 {
@@ -31,7 +32,6 @@ namespace ModernRonin.PraeterArtem.UnitTests._MetaAssertions_
                     .Any(x => AttributesThatMeanNoUnitTestsNeeded.Contains(x.GetType()));
             }
         }
-        public bool IsTestFixture { get { return TargetType.HasAttribute<TestFixtureAttribute>(); } }
         public bool HasPublicMethods { get { return TargetType.HasPublicMethods(); } }
         public bool IsCompilerGenerated
         {
@@ -81,7 +81,7 @@ namespace ModernRonin.PraeterArtem.UnitTests._MetaAssertions_
 					if (!TargetType.IsEnum && !TargetType.IsInterface)
                         if (TargetType.IsNestedPublic || !TargetType.IsNested)
 								if (TestType == null)
-									Assert.Fail("Every code type should have test " +
+									throw new AssertException("Every code type should have test " +
 										"\r\nor should be marked with one of the attributes " +
 										string.Join("\r\n", AttributesThatMeanNoUnitTestsNeeded
 										.Select(x => "[" + x.Name.Replace("Attribute", "") + "]")));
@@ -89,23 +89,19 @@ namespace ModernRonin.PraeterArtem.UnitTests._MetaAssertions_
             if (Source == TypeSource.TestAssembly)
                 if (TargetType.IsClass && !TargetType.IsNested && !HasSpecialNamespace)
                 {
-                    Assert.That(TargetType.IsPublic,
-                        "Every test type should be public");
+                    TargetType.IsPublic.Should().BeTrue("Every test type should be public");
 
-                    Assert.That(IsTestFixture,
-                        "Every test type should have [TestFixture] attribute");
-
-                    Assert.That(TargetType.Name, Is.StringEnding("Tests"),
+                    TargetType.Name.Should().EndWith("Tests",
                         "Every test type should have name ending with 'Tests'");
                 }
 
             if (TargetType.IsClass && !TargetType.IsAbstract)
-                Assert.That(TargetType.IsSealed != IsVirtual,
+                TargetType.IsSealed.Should().Be(!IsVirtual,
                     "Every type should be either sealed, or [Virtual], or abstract");
 
             if (IsDataTransferObject)
-                Assert.That(!HasPublicMethods,
-                "Every [DataTransferObject] type should have no public methods");
+                HasPublicMethods.Should().BeFalse(
+					"Every [DataTransferObject] type should have no public methods");
         }
 
         static HashSet<Type> sAttributesThatMeanNoUnitTestsNeeded;

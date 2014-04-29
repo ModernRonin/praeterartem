@@ -1,18 +1,17 @@
 using FluentAssertions;
 using ModernRonin.PraeterArtem.Functional;
-using NUnit.Framework;
+using Xunit.Extensions;
 
 namespace ModernRonin.PraeterArtem.UnitTests.Functional
 {
-    [TestFixture]
     public sealed class ComparableExtensionsTests
     {
-        [Test]
-        [TestCase(1.2f, 0.3f, 300f, true)]
-        [TestCase(0.3f, 0.3f, 300f, true)]
-        [TestCase(300f, 0.3f, 300f, true)]
-        [TestCase(0.3f, 0.4f, 300f, false)]
-        [TestCase(400f, 0.4f, 300f, false)]
+		[Theory]
+        [InlineData(1.2f, 0.3f, 300f, true)]
+		[InlineData(0.3f, 0.3f, 300f, true)]
+		[InlineData(300f, 0.3f, 300f, true)]
+		[InlineData(0.3f, 0.4f, 300f, false)]
+		[InlineData(400f, 0.4f, 300f, false)]
         public void IsInClosedInterval(float input, float lower, float upper,
                                        bool expectedResult)
         {
@@ -20,12 +19,12 @@ namespace ModernRonin.PraeterArtem.UnitTests.Functional
                  .Should()
                  .Be(expectedResult);
         }
-        [Test]
-        [TestCase(1.2f, 0.3f, 300f, true)]
-        [TestCase(0.3f, 0.3f, 300f, false)]
-        [TestCase(300f, 0.3f, 300f, false)]
-        [TestCase(0.3f, 0.4f, 300f, false)]
-        [TestCase(400f, 0.4f, 300f, false)]
+		[Theory]
+		[InlineData(1.2f, 0.3f, 300f, true)]
+		[InlineData(0.3f, 0.3f, 300f, false)]
+		[InlineData(300f, 0.3f, 300f, false)]
+		[InlineData(0.3f, 0.4f, 300f, false)]
+		[InlineData(400f, 0.4f, 300f, false)]
         public void IsInOpenInterval(float input, float lower, float upper,
                                      bool expectedResult)
         {

@@ -2,36 +2,35 @@
 using FluentAssertions.Common;
 using JetBrains.Annotations;
 using ModernRonin.PraeterArtem.Annotations;
-using NUnit.Framework;
+using Xunit;
 using TypeExtensions = ModernRonin.PraeterArtem.Reflection.TypeExtensions;
 
 namespace ModernRonin.PraeterArtem.UnitTests.Reflection
 {
-	[TestFixture]
 	public sealed class TypeExtensionsTests
 	{
-		[Test]
+		[Fact]
 		public void HasAttribute_When_There_AreNo_Attributes_Should_Return_False()
 		{
 			typeof (TypeExtensionsTests)
 				.HasAttribute<DataTransferObjectAttribute>()
 				.Should().BeFalse();
 		}
-		[Test]
+		[Fact]
 		public void HasAttribute_When_There_Is_Attribute_Should_Return_True()
 		{
-			typeof (TypeExtensionsTests)
-				.HasAttribute<TestFixtureAttribute>()
+			typeof (WithPublicMethods)
+				.HasAttribute<UsedImplicitlyAttribute>()
 				.Should().BeTrue();
 		}
 
-		[Test]
+		[Fact]
 		public void HasPublicMethods_When_There_Are_Public_Methods_Should_Return_True()
 		{
 			TypeExtensions.HasPublicMethods(typeof(WithPublicMethods)).Should().BeTrue();
 		}
 
-		[Test]
+		[Fact]
 		public void HasPublicMethods_When_There_AreNo_Public_Methods_Should_Return_False()
 		{
 			TypeExtensions.HasPublicMethods(typeof (WithoutPublicMethods)).Should().BeFalse();

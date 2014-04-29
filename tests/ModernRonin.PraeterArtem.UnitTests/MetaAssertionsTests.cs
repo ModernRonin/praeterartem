@@ -1,22 +1,27 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using JetBrains.Annotations;
 using ModernRonin.PraeterArtem.UnitTests._MetaAssertions_;
-using NUnit.Framework;
+using Xunit.Extensions;
 
 namespace ModernRonin.PraeterArtem.UnitTests
 {
-	[TestFixture]
 	public sealed class MetaAssertionsTests
 	{
 		[NotNull]
-		static IEnumerable<IMetaAssertionsType> GetTypesToTest()
+		public static IEnumerable<IMetaAssertionsType[]> TypesToTest
 		{
-			return MetaAssertionsProject.FromSampleClass<MetaAssertionsTests>().Types;
+			get
+			{
+				return MetaAssertionsProject
+					.FromSampleClass<MetaAssertionsTests>()
+					.Types.Select(x => new[] {x});
+			}
 		}
 
-		[Test]
-		[TestCaseSource("GetTypesToTest")]
+		[Theory]
+		[PropertyData("TypesToTest")]
 		public void Check([NotNull] IMetaAssertionsType type)
 		{
 			Console.WriteLine(type.ToString());

@@ -1,24 +1,23 @@
 using FluentAssertions;
 using ModernRonin.PraeterArtem.Functional;
-using NUnit.Framework;
+using Xunit;
 
 namespace ModernRonin.PraeterArtem.UnitTests.Functional
 {
-    [TestFixture]
 	public sealed class NullTests
     {
-        [Test]
+        [Fact]
         public void Enumerable_Is_Empty()
         {
             Null.Enumerable<int>().Should().BeEmpty();
         }
-        [Test]
+        [Fact]
         public void Action_Does_Nothing()
         {
             // actually, I don't see any way to prove that the following call does nothing ;)
             Null.Action()();
         }
-        [Test]
+        [Fact]
         public void Action_With_Argument_Does_Nothing()
         {
             // actually, I don't see any way to prove that the following call does nothing ;)

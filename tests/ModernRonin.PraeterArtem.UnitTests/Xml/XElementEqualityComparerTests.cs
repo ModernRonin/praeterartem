@@ -1,48 +1,45 @@
 using System.Xml.Linq;
 using FluentAssertions;
 using ModernRonin.PraeterArtem.Xml;
-using NUnit.Framework;
+using Xunit;
 
 namespace ModernRonin.PraeterArtem.UnitTests.Xml
 {
-    [TestFixture]
 	public sealed class XElementEqualityComparerTests
     {
         XElementEqualityComparer mUnderTest;
-        [SetUp]
-        public void Setup()
-        {
+
+		public XElementEqualityComparerTests()
+		{
             mUnderTest = new XElementEqualityComparer();
         }
-        [Test]
+        [Fact]
         public void ChangedAttributeOrderDoesNotMatter()
         {
-            var lhs =
-                XDocument.Parse("<Alpha bravo=\"1\" charlie=\"2\"/>").Root;
-            var rhs =
-                XDocument.Parse("<Alpha charlie=\"2\" bravo=\"1\"/>").Root;
+	        var lhs = XElement.Parse("<Alpha bravo=\"1\" charlie=\"2\"/>");
+			var rhs = XElement.Parse("<Alpha charlie=\"2\" bravo=\"1\"/>");
             mUnderTest.Equals(lhs, rhs).Should().BeTrue();
         }
-        [Test]
+        [Fact]
         public void SeparateCloseTagOrNotDoesNotMatter()
         {
-            var lhs = XDocument.Parse("<Alpha/>").Root;
-            var rhs = XDocument.Parse("<Alpha></Alpha>").Root;
+			var lhs = XElement.Parse("<Alpha/>");
+			var rhs = XElement.Parse("<Alpha></Alpha>");
             mUnderTest.Equals(lhs, rhs).Should().BeTrue();
         }
-        [Test]
+        [Fact]
         public void NestedStructure()
         {
-            var lhs = XDocument.Parse(
+			var lhs = XElement.Parse(
 				"<Alpha bravo=\"1\" charlie=\"2\">" +
 					"<Delta echo=\"3\" foxtrot=\"4\"/>" +
 					"<Golf>5</Golf>" +
-				"</Alpha>").Root;
-            var rhs = XDocument.Parse(
+				"</Alpha>");
+			var rhs = XElement.Parse(
 				"<Alpha charlie=\"2\" bravo=\"1\">" +
 					"<Golf>5</Golf>" +
 					"<Delta foxtrot=\"4\" echo=\"3\"></Delta>" +
-				"</Alpha>").Root;
+				"</Alpha>");
             mUnderTest.Equals(lhs, rhs).Should().BeTrue();
         }
     }

@@ -1,7 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using NUnit.Framework;
+using Xunit;
+using Xunit.Sdk;
 
 namespace ModernRonin.PraeterArtem.UnitTests._MetaAssertions_
 {
@@ -25,7 +26,9 @@ namespace ModernRonin.PraeterArtem.UnitTests._MetaAssertions_
 
 			public void Check()
 			{
-				Assert.Fail("No '" + mReplace + "' library is found. Perhaps it's never accessed from code explicitly");
+				throw new AssertException(
+					"No '" + mReplace + "' library is found. " +
+					"Perhaps it's never accessed from code explicitly");
 			}
 
 			public override string ToString()
