@@ -6,7 +6,7 @@ namespace ModernRonin.PraeterArtem.Functional
     public static class Null
     {
 		// Ilya: Delete this. There is Enumerable.Empty<T>()
-		// which resharper finds if you press ctrl+alt+space
+		// which resharper finds if you press Control+Alt+Space
         public static IEnumerable<T> Enumerable<T>()
         {
 			return System.Linq.Enumerable.Empty<T>();
