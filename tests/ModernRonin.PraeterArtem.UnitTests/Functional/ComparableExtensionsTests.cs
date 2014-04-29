@@ -5,7 +5,7 @@ using NUnit.Framework;
 namespace ModernRonin.PraeterArtem.UnitTests.Functional
 {
     [TestFixture]
-    public class ComparableExtensionsTests
+    public sealed class ComparableExtensionsTests
     {
         [Test]
         [TestCase(1.2f, 0.3f, 300f, true)]

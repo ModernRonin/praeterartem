@@ -6,7 +6,7 @@ using NUnit.Framework;
 namespace ModernRonin.PraeterArtem.UnitTests.Functional
 {
     [TestFixture]
-    public class IntegerExtensionsTests
+	public sealed class IntegerExtensionsTests
     {
         [Test]
         public void TimesExecute()

@@ -9,7 +9,7 @@ namespace ModernRonin.PraeterArtem.Xml
     ///     which deals correctly with changed order of attributes or child
     ///     nodes, in contrast to <see cref="XNode.DeepEquals" />.
     /// </summary>
-    public class XElementEqualityComparer : IEqualityComparer<XElement>
+    public sealed class XElementEqualityComparer : IEqualityComparer<XElement>
     {
         public bool Equals(XElement x, XElement y)
         {

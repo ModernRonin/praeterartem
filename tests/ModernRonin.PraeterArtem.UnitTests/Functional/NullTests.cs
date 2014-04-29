@@ -5,7 +5,7 @@ using NUnit.Framework;
 namespace ModernRonin.PraeterArtem.UnitTests.Functional
 {
     [TestFixture]
-    public class NullTests
+	public sealed class NullTests
     {
         [Test]
         public void Enumerable_Is_Empty()

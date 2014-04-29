@@ -8,7 +8,7 @@ using NUnit.Framework;
 namespace ModernRonin.PraeterArtem.UnitTests.Functional
 {
     [TestFixture]
-    public class EnumerableExtensionsTests
+    public sealed class EnumerableExtensionsTests
     {
         [TestCase(new int[] {}, true)]
         [TestCase(new[] {1, 2, 3}, false)]
@@ -176,9 +176,7 @@ namespace ModernRonin.PraeterArtem.UnitTests.Functional
                                        .Be("aa");
         }
         [Test]
-        public void
-            MinElement_On_Empty_ValueType_Enumerable_Returns_ValueTypeDefault
-            ()
+        public void MinElement_On_Empty_ValueType_Enumerable_Returns_ValueTypeDefault()
         {
             Null.Enumerable<int>()
                 .MinElement(Functions.Identity<int>())
@@ -186,8 +184,7 @@ namespace ModernRonin.PraeterArtem.UnitTests.Functional
                 .Be(0);
         }
         [Test]
-        public void MinElement_On_Empty_ReferenceType_Enumerable_Returns_Null
-            ()
+        public void MinElement_On_Empty_ReferenceType_Enumerable_Returns_Null()
         {
             Null.Enumerable<object>()
                 .MinElement(e => e.GetHashCode())
@@ -202,9 +199,7 @@ namespace ModernRonin.PraeterArtem.UnitTests.Functional
                                        .Be("abcd");
         }
         [Test]
-        public void
-            MaxElement_On_Empty_ValueType_Enumerable_Returns_ValueTypeDefault
-            ()
+        public void MaxElement_On_Empty_ValueType_Enumerable_Returns_ValueTypeDefault()
         {
             Null.Enumerable<int>()
                 .MaxElement(Functions.Identity<int>())
@@ -244,7 +239,7 @@ namespace ModernRonin.PraeterArtem.UnitTests.Functional
         /// <summary>
         ///     An example for tree-like data structures.
         /// </summary>
-        class TypeImplementingIEnumerableOfItself :
+        sealed class TypeImplementingIEnumerableOfItself :
             IEnumerable<TypeImplementingIEnumerableOfItself>
         {
             readonly IEnumerable<TypeImplementingIEnumerableOfItself>

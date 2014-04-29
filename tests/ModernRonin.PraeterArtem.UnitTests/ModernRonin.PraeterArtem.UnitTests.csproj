@@ -58,7 +58,13 @@
     <Compile Include="Functional\FunctionsTests.cs" />
     <Compile Include="Functional\IntegerExtensionsTests.cs" />
     <Compile Include="Functional\NullTests.cs" />
+    <Compile Include="_MetaAssertions_\IMetaAssertionsType.cs" />
+    <Compile Include="_MetaAssertions_\MetaAssertionsProject.cs" />
+    <Compile Include="_MetaAssertions_\MetaAssertionsType.cs" />
+    <Compile Include="_MetaAssertions_\TypeSource.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Reflection\TypeExtensionsTests.cs" />
+    <Compile Include="MetaAssertionsTests.cs" />
     <Compile Include="Xml\XElementEqualityComparerTests.cs" />
   </ItemGroup>
   <ItemGroup>

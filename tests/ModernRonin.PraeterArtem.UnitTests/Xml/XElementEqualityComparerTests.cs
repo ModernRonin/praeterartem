@@ -6,7 +6,7 @@ using NUnit.Framework;
 namespace ModernRonin.PraeterArtem.UnitTests.Xml
 {
     [TestFixture]
-    public class XElementEqualityComparerTests
+	public sealed class XElementEqualityComparerTests
     {
         XElementEqualityComparer mUnderTest;
         [SetUp]

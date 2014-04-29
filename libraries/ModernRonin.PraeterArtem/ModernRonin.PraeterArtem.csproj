@@ -42,12 +42,53 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Annotations\AllowedInheritanceOption.cs" />
+    <Compile Include="Annotations\DataTransferObjectAttribute.cs" />
+    <Compile Include="Annotations\EntityFrameworkSpecificAttribute.cs" />
+    <Compile Include="Annotations\ForDocumentationOnly.cs" />
+    <Compile Include="Annotations\MarkerClassAttribute.cs" />
+    <Compile Include="Annotations\MeansIntegrationTestNeededAttribute.cs" />
+    <Compile Include="Annotations\MeansNoUnitTestsNeededAttribute.cs" />
+    <Compile Include="Annotations\MvcSpecificAttribute.cs" />
+    <Compile Include="Annotations\NamespaceObjectAttribute.cs" />
+    <Compile Include="Annotations\ReSharper\AspMvcActionAttribute.cs" />
+    <Compile Include="Annotations\ReSharper\AspMvcAreaAttribute.cs" />
+    <Compile Include="Annotations\ReSharper\AspMvcControllerAttribute.cs" />
+    <Compile Include="Annotations\ReSharper\AspMvcMasterAttribute.cs" />
+    <Compile Include="Annotations\ReSharper\AspMvcModelTypeAttribute.cs" />
+    <Compile Include="Annotations\ReSharper\AspMvcPartialViewAttribute.cs" />
+    <Compile Include="Annotations\ReSharper\AspMvcSupressViewErrorAttribute.cs" />
+    <Compile Include="Annotations\ReSharper\AspMvcTemplateAttribute.cs" />
+    <Compile Include="Annotations\ReSharper\AspMvcViewAttribute.cs" />
+    <Compile Include="Annotations\ReSharper\AssertionConditionAttribute.cs" />
+    <Compile Include="Annotations\ReSharper\AssertionConditionType.cs" />
+    <Compile Include="Annotations\ReSharper\AssertionMethodAttribute.cs" />
+    <Compile Include="Annotations\ReSharper\BaseTypeRequiredAttribute.cs" />
+    <Compile Include="Annotations\ReSharper\CanBeNullAttribute.cs" />
+    <Compile Include="Annotations\ReSharper\CannotApplyEqualityOperatorAttribute.cs" />
+    <Compile Include="Annotations\ReSharper\ImplicitUseKindFlags.cs" />
+    <Compile Include="Annotations\ReSharper\ImplicitUseTargetFlags.cs" />
+    <Compile Include="Annotations\ReSharper\InstantHandleAttribute.cs" />
+    <Compile Include="Annotations\ReSharper\InvokerParameterNameAttribute.cs" />
+    <Compile Include="Annotations\ReSharper\LocalizationRequiredAttribute.cs" />
+    <Compile Include="Annotations\ReSharper\MeansImplicitUseAttribute.cs" />
+    <Compile Include="Annotations\ReSharper\NotNullAttribute.cs" />
+    <Compile Include="Annotations\ReSharper\PathReferenceAttribute.cs" />
+    <Compile Include="Annotations\ReSharper\PublicAPIAttribute.cs" />
+    <Compile Include="Annotations\ReSharper\PureAttribute.cs" />
+    <Compile Include="Annotations\ReSharper\RazorSectionAttribute.cs" />
+    <Compile Include="Annotations\ReSharper\StringFormatMethodAttribute.cs" />
+    <Compile Include="Annotations\ReSharper\TerminatesProgramAttribute.cs" />
+    <Compile Include="Annotations\ReSharper\UsedImplicitlyAttribute.cs" />
+    <Compile Include="Annotations\VirtualAttribute.cs" />
+    <Compile Include="Annotations\WpfSpecificAttribute.cs" />
     <Compile Include="Functional\ComparableExtensions.cs" />
     <Compile Include="Functional\EnumerableExtensions.cs" />
     <Compile Include="Functional\Functions.cs" />
     <Compile Include="Functional\IntegerExtensions.cs" />
     <Compile Include="Functional\Null.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Reflection\TypeExtensions.cs" />
     <Compile Include="Xml\XElementEqualityComparer.cs" />
   </ItemGroup>
   <ItemGroup />
