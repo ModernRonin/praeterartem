@@ -1,7 +1,12 @@
 using System;
+using System.Diagnostics.CodeAnalysis;
 
 namespace JetBrains.Annotations
 {
+	[SuppressMessage("Microsoft.Naming", 
+		"CA1726:UsePreferredTerms", 
+		MessageId = "Flags",
+		Justification = "It is JetBrains code")]
 	[Flags]
 	public enum ImplicitUseKindFlags
 	{

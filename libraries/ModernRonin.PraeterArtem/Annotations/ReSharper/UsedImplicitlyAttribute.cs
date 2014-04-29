@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics.CodeAnalysis;
 
 namespace JetBrains.Annotations
 {
@@ -9,9 +10,15 @@ namespace JetBrains.Annotations
 	[AttributeUsage(AttributeTargets.All, AllowMultiple = false, Inherited = true)]
 	public sealed class UsedImplicitlyAttribute : Attribute
 	{
+		public string Message { get; private set; }
+
 		[UsedImplicitly]
 		public UsedImplicitlyAttribute() : this(ImplicitUseKindFlags.Default, ImplicitUseTargetFlags.Default) {}
 
+		[SuppressMessage("Microsoft.Naming",
+			"CA1726:UsePreferredTerms",
+			MessageId = "Flags",
+			Justification = "It is JetBrains code")]
 		[UsedImplicitly]
 		public UsedImplicitlyAttribute(ImplicitUseKindFlags useKindFlags, ImplicitUseTargetFlags targetFlags)
 		{
@@ -20,19 +27,38 @@ namespace JetBrains.Annotations
 		}
 
 		/// <param name="message">by who?</param>
-		public UsedImplicitlyAttribute(string message) : this() {}
+		public UsedImplicitlyAttribute(string message) : this()
+		{
+			Message = message;
+		}
 
+		[SuppressMessage("Microsoft.Naming",
+			"CA1726:UsePreferredTerms",
+			MessageId = "Flags",
+			Justification = "It is JetBrains code")]
 		[UsedImplicitly]
 		public UsedImplicitlyAttribute(ImplicitUseKindFlags useKindFlags) : this(useKindFlags, ImplicitUseTargetFlags.Default) {}
 
+		[SuppressMessage("Microsoft.Naming",
+			"CA1726:UsePreferredTerms",
+			MessageId = "Flags",
+			Justification = "It is JetBrains code")]
 		[UsedImplicitly]
 		public UsedImplicitlyAttribute(ImplicitUseTargetFlags targetFlags) : this(ImplicitUseKindFlags.Default, targetFlags) {}
 
+		[SuppressMessage("Microsoft.Naming",
+			"CA1726:UsePreferredTerms",
+			MessageId = "Flags",
+			Justification = "It is JetBrains code")]
 		[UsedImplicitly]
 		public ImplicitUseKindFlags UseKindFlags { get; private set; }
 		/// <summary>
 		/// Gets value indicating what is meant to be used
 		/// </summary>
+		[SuppressMessage("Microsoft.Naming",
+			"CA1726:UsePreferredTerms",
+			MessageId = "Flags",
+			Justification = "It is JetBrains code")]
 		[UsedImplicitly]
 		public ImplicitUseTargetFlags TargetFlags { get; private set; }
 	}

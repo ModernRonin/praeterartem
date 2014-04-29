@@ -22,7 +22,7 @@ namespace JetBrains.Annotations
 		/// <value><c>true</c> if a element should be localized; otherwise, <c>false</c>.</value>
 		/// </summary>
 		[UsedImplicitly]
-		public bool Required { get; set; }
+		public bool Required { get; private set; }
 
 		/// <summary>
 		/// Returns whether the value of the given object is equal to the current <see cref="LocalizationRequiredAttribute"/>.

@@ -5,10 +5,13 @@ using NUnit.Framework;
 
 namespace ModernRonin.PraeterArtem.UnitTests._MetaAssertions_
 {
-	public sealed class MetaAssertionsProject : List<IMetaAssertionsType>
+	public sealed class MetaAssertionsProject 
 	{
 		public Assembly CodeAssembly { get; private set; }
 		public Assembly TestAssembly { get; private set; }
+		private readonly List<IMetaAssertionsType> mTypes = new List<IMetaAssertionsType>();
+
+		public IEnumerable<IMetaAssertionsType> Types {  get { return mTypes; } }
 
 		#region ' Ugly nested class '
 		sealed class CodeAssemblyNotFound : IMetaAssertionsType
@@ -41,13 +44,13 @@ namespace ModernRonin.PraeterArtem.UnitTests._MetaAssertions_
 			if (codeAssembly == null) return;
 			CodeAssembly = codeAssembly;
 
-			AddRange(from t in CodeAssembly.GetTypes()
+			mTypes.AddRange(from t in CodeAssembly.GetTypes()
 					 select new MetaAssertionsType(t, TestAssembly));
 
-			AddRange(from t in TestAssembly.GetTypes()
+			mTypes.AddRange(from t in TestAssembly.GetTypes()
 					 select new MetaAssertionsType(t));
 
-			RemoveAll(t => ((MetaAssertionsType)t).IsCompilerGenerated);
+			mTypes.RemoveAll(t => ((MetaAssertionsType)t).IsCompilerGenerated);
 		}
 
 		Assembly GetCodeAssemblyForTestAssembly(Assembly testAssembly)
@@ -56,7 +59,7 @@ namespace ModernRonin.PraeterArtem.UnitTests._MetaAssertions_
 			var assemblyName = testAssembly.GetReferencedAssemblies().SingleOrDefault(r => r.Name == replace);
 			if (assemblyName == null)
 			{
-				Add(new CodeAssemblyNotFound(replace));
+				mTypes.Add(new CodeAssemblyNotFound(replace));
 				return null;
 			}
 

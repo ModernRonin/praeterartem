@@ -1,3 +1,3 @@
-praeterartem
+Praeter Artem
 ============
-test
+Praeter Artem means beyond arts in latin

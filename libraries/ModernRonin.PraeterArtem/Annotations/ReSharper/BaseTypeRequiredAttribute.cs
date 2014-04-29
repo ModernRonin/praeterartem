@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics.CodeAnalysis;
 
 namespace JetBrains.Annotations
 {
@@ -17,6 +18,9 @@ namespace JetBrains.Annotations
 	/// {}
 	/// </code>
 	/// </example>
+	[SuppressMessage("Microsoft.Design", 
+		"CA1019:DefineAccessorsForAttributeArguments",
+		Justification = "It is JetBrains code")]
 	[AttributeUsage(AttributeTargets.Class, AllowMultiple = true, Inherited = true)]
 	[BaseTypeRequired(typeof (Attribute))]
 	public sealed class BaseTypeRequiredAttribute : Attribute
@@ -33,6 +37,9 @@ namespace JetBrains.Annotations
 		/// <summary>
 		/// Gets enumerations of specified base types
 		/// </summary>
+		[SuppressMessage("Microsoft.Performance",
+			"CA1819:PropertiesShouldNotReturnArrays",
+			Justification = "It is JetBrains code")]
 		public Type[] BaseTypes { get; private set; }
 	}
 }

@@ -1,4 +1,5 @@
 using System;
+using JetBrains.Annotations;
 
 namespace ModernRonin.PraeterArtem.Functional
 {
@@ -12,21 +13,24 @@ namespace ModernRonin.PraeterArtem.Functional
         /// </summary>
         /// <param name="count"></param>
         /// <param name="action"></param>
-        public static void TimesExecute(this int count, Action action)
+        public static void TimesExecute(this int count, [NotNull] Action action)
         {
-            for (var i = 0; i < count; ++i)
+	        if (action == null) throw new ArgumentNullException("action");
+	        for (var i = 0; i < count; ++i)
                 action();
         }
-        /// <summary>
+
+	    /// <summary>
         ///     Executes <paramref name="action" /> for all integers in the
         ///     interval [0; <paramref name="count" />[.
         /// </summary>
         /// <param name="count"></param>
         /// <param name="action"></param>
-        public static void TimesExecute(this int count, Action<int> action)
-        {
-            for (var i = 0; i < count; ++i)
+        public static void TimesExecute(this int count, [NotNull] Action<int> action)
+	    {
+		    if (action == null) throw new ArgumentNullException("action");
+		    for (var i = 0; i < count; ++i)
                 action(i);
-        }
+	    }
     }
 }

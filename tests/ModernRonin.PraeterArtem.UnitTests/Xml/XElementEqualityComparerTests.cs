@@ -33,14 +33,16 @@ namespace ModernRonin.PraeterArtem.UnitTests.Xml
         [Test]
         public void NestedStructure()
         {
-            var lhs =
-                XDocument.Parse(
-                                "<Alpha bravo=\"1\" charlie=\"2\"><Delta echo=\"3\" foxtrott=\"4\"/><Golf>5</Golf></Alpha>")
-                         .Root;
-            var rhs =
-                XDocument.Parse(
-                                "<Alpha charlie=\"2\" bravo=\"1\"><Golf>5</Golf><Delta foxtrott=\"4\" echo=\"3\"></Delta></Alpha>")
-                         .Root;
+            var lhs = XDocument.Parse(
+				"<Alpha bravo=\"1\" charlie=\"2\">" +
+					"<Delta echo=\"3\" foxtrot=\"4\"/>" +
+					"<Golf>5</Golf>" +
+				"</Alpha>").Root;
+            var rhs = XDocument.Parse(
+				"<Alpha charlie=\"2\" bravo=\"1\">" +
+					"<Golf>5</Golf>" +
+					"<Delta foxtrot=\"4\" echo=\"3\"></Delta>" +
+				"</Alpha>").Root;
             mUnderTest.Equals(lhs, rhs).Should().BeTrue();
         }
     }

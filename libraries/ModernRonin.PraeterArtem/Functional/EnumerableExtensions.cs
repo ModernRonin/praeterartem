@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using JetBrains.Annotations;
 
 namespace ModernRonin.PraeterArtem.Functional
 {
@@ -24,22 +25,26 @@ namespace ModernRonin.PraeterArtem.Functional
         /// <summary>
         ///     Passes each argument of <paramref name="enumerable" /> to <paramref name="action" />.
         /// </summary>
-        public static void UseIn<T>(this IEnumerable<T> enumerable,
-                                    Action<T> action)
+        public static void UseIn<T>([NotNull] this IEnumerable<T> enumerable, [NotNull] Action<T> action)
         {
-            foreach (var element in enumerable)
+	        if (enumerable == null) throw new ArgumentNullException("enumerable");
+	        if (action == null) throw new ArgumentNullException("action");
+	        foreach (var element in enumerable)
                 action(element);
         }
-        /// <summary>
+
+	    /// <summary>
         ///     Calls each action contained in <paramref name="actions" /> with the argument <paramref name="argument" />
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        public static void ExecuteOn<T>(this IEnumerable<Action<T>> actions,
+        public static void ExecuteOn<T>([NotNull] this IEnumerable<Action<T>> actions,
                                         T argument)
-        {
-            actions.UseIn(a => a(argument));
-        }
-        /// <summary>
+	    {
+		    if (actions == null) throw new ArgumentNullException("actions");
+		    actions.UseIn(a => a(argument));
+	    }
+
+	    /// <summary>
         ///     Allows to easily pass single elements into functions expecting
         ///     an IEnumerable.
         /// </summary>
@@ -219,10 +224,11 @@ namespace ModernRonin.PraeterArtem.Functional
         /// <param name="enumerable"></param>
         /// <param name="evaluator"></param>
         /// <returns></returns>
-        public static T MinElement<T>(this IEnumerable<T> enumerable,
-                                      Func<T, int> evaluator)
+        public static T MinElement<T>([NotNull] this IEnumerable<T> enumerable, [NotNull] Func<T, int> evaluator)
         {
-            var minimumScore = Int32.MaxValue;
+	        if (enumerable == null) throw new ArgumentNullException("enumerable");
+	        if (evaluator == null) throw new ArgumentNullException("evaluator");
+	        var minimumScore = Int32.MaxValue;
             var result = default(T);
             foreach (var element in enumerable)
             {

@@ -6,7 +6,7 @@ namespace ModernRonin.PraeterArtem.Annotations
 	[AttributeUsage(AttributeTargets.Class, Inherited = false, AllowMultiple = false)]
 	public sealed class VirtualAttribute : Attribute
 	{
-		public AllowedInheritanceOption Option { get; set; }
+		public AllowedInheritanceOption Option { get; private set; }
 		public VirtualAttribute() { }
 		public VirtualAttribute(AllowedInheritanceOption option)
 		{

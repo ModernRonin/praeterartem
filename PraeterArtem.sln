@@ -9,6 +9,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModernRonin.PraeterArtem", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModernRonin.PraeterArtem.UnitTests", "tests\ModernRonin.PraeterArtem.UnitTests\ModernRonin.PraeterArtem.UnitTests.csproj", "{571863C8-3152-4342-A14C-31E6F40308D0}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution items", "Solution items", "{89D5AB6E-A132-493A-9715-5F52C6211ABE}"
+	ProjectSection(SolutionItems) = preProject
+		InternalCode.ruleset = InternalCode.ruleset
+		PublicApi.ruleset = PublicApi.ruleset
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

@@ -12,7 +12,7 @@ namespace ModernRonin.PraeterArtem.UnitTests
 		[NotNull]
 		static IEnumerable<IMetaAssertionsType> GetTypesToTest()
 		{
-			return MetaAssertionsProject.FromSampleClass<MetaAssertionsTests>();
+			return MetaAssertionsProject.FromSampleClass<MetaAssertionsTests>().Types;
 		}
 
 		[Test]

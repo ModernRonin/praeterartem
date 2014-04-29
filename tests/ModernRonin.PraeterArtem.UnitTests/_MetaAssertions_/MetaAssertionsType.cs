@@ -2,6 +2,7 @@
 using System.CodeDom.Compiler;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Globalization;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.CompilerServices;
@@ -20,7 +21,7 @@ namespace ModernRonin.PraeterArtem.UnitTests._MetaAssertions_
         public Type TestType { get { return GetUnitTest(TargetType, mTestAssembly); } }
 
         public bool IsVirtual { get { return TargetType.HasAttribute<VirtualAttribute>(); } }
-        public bool IsDataOnly { get { return TargetType.HasAttribute<DataTransferObjectAttribute>(); } }
+        public bool IsDataTransferObject { get { return TargetType.HasAttribute<DataTransferObjectAttribute>(); } }
         public bool IsUnitTestsNeeded
         {
             get
@@ -46,7 +47,8 @@ namespace ModernRonin.PraeterArtem.UnitTests._MetaAssertions_
             {
                 return TargetType.Namespace != null &&
                        TargetType.Namespace.Split('.').Any(part =>
-                          part.StartsWith("_") && part.EndsWith("_"));
+                          part.StartsWith("_", StringComparison.Ordinal) && 
+						  part.EndsWith("_", StringComparison.Ordinal));
             }
         }
 
@@ -75,8 +77,7 @@ namespace ModernRonin.PraeterArtem.UnitTests._MetaAssertions_
                 if (IsUnitTestsNeeded)
 					if (TargetType.Namespace != null)
 					if (TargetType.Namespace != "JetBrains.Annotations")
-//					if (TargetType.Namespace != "ModernRonin.PraeterArtem.UnitTests.MetaAssertionsTests")
-					if (!TargetType.Namespace.EndsWith("Migrations"))
+					if (!TargetType.Namespace.EndsWith("Migrations", StringComparison.Ordinal))
 					if (!TargetType.IsEnum && !TargetType.IsInterface)
                         if (TargetType.IsNestedPublic || !TargetType.IsNested)
 								if (TestType == null)
@@ -102,9 +103,9 @@ namespace ModernRonin.PraeterArtem.UnitTests._MetaAssertions_
                 Assert.That(TargetType.IsSealed != IsVirtual,
                     "Every type should be either sealed, or [Virtual], or abstract");
 
-            if (IsDataOnly)
+            if (IsDataTransferObject)
                 Assert.That(!HasPublicMethods,
-                "Every [DataOnly] type should have no public methods");
+                "Every [DataTransferObject] type should have no public methods");
         }
 
         static HashSet<Type> sAttributesThatMeanNoUnitTestsNeeded;
@@ -140,7 +141,8 @@ namespace ModernRonin.PraeterArtem.UnitTests._MetaAssertions_
             var ns = type.Namespace;
             if (ns == null) return null;
             var root = SubstringOnLeftOfFirst(type.Assembly.FullName, ",");
-            var replace = ns.Replace(root, String.Format("{0}.UnitTests", root));
+            var replace = ns.Replace(root, string.Format(
+				CultureInfo.InvariantCulture, "{0}.UnitTests", root));
             var className = SubstringOnLeftOfFirst(type.Name, "`");
             var name = replace + "." + className + "Tests";
             Debug.WriteLine("Looking for: " + name);

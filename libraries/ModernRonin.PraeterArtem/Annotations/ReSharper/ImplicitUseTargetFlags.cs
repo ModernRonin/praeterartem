@@ -1,10 +1,16 @@
 using System;
+using System.Diagnostics.CodeAnalysis;
 
 namespace JetBrains.Annotations
 {
 	/// <summary>
-	/// Specify what is considered used implicitly when marked with <see cref="MeansImplicitUseAttribute"/> or <see cref="UsedImplicitlyAttribute"/>
+	/// Specify what is considered to be used implicitly when marked with 
+	/// <see cref="MeansImplicitUseAttribute"/> or <see cref="UsedImplicitlyAttribute"/>
 	/// </summary>
+	[SuppressMessage("Microsoft.Naming",
+		"CA1726:UsePreferredTerms",
+		MessageId = "Flags",
+		Justification = "It is JetBrains code")]
 	[Flags]
 	public enum ImplicitUseTargetFlags
 	{
