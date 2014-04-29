@@ -10,10 +10,13 @@ namespace JetBrains.Annotations
 	[AttributeUsage(AttributeTargets.All, AllowMultiple = false, Inherited = true)]
 	public sealed class UsedImplicitlyAttribute : Attribute
 	{
+		[CanBeNull]
 		public string Message { get; private set; }
 
 		[UsedImplicitly]
-		public UsedImplicitlyAttribute() : this(ImplicitUseKindFlags.Default, ImplicitUseTargetFlags.Default) {}
+		public UsedImplicitlyAttribute() 
+			: this(ImplicitUseKindFlags.Default, ImplicitUseTargetFlags.Default) 
+		{}
 
 		[SuppressMessage("Microsoft.Naming",
 			"CA1726:UsePreferredTerms",
@@ -27,7 +30,8 @@ namespace JetBrains.Annotations
 		}
 
 		/// <param name="message">by who?</param>
-		public UsedImplicitlyAttribute(string message) : this()
+		public UsedImplicitlyAttribute([NotNull] string message) 
+			: this()
 		{
 			Message = message;
 		}

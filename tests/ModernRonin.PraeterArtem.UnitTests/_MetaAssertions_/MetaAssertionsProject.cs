@@ -1,17 +1,22 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using Xunit;
+using JetBrains.Annotations;
 using Xunit.Sdk;
 
 namespace ModernRonin.PraeterArtem.UnitTests._MetaAssertions_
 {
 	public sealed class MetaAssertionsProject 
 	{
+		[NotNull]
 		public Assembly CodeAssembly { get; private set; }
-		public Assembly TestAssembly { get; private set; }
-		private readonly List<IMetaAssertionsType> mTypes = new List<IMetaAssertionsType>();
 
+		[NotNull]
+		public Assembly TestAssembly { get; private set; }
+
+		[NotNull] private readonly List<IMetaAssertionsType> mTypes = new List<IMetaAssertionsType>();
+
+		[NotNull]
 		public IEnumerable<IMetaAssertionsType> Types {  get { return mTypes; } }
 
 		#region ' Ugly nested class '
@@ -19,7 +24,7 @@ namespace ModernRonin.PraeterArtem.UnitTests._MetaAssertions_
 		{
 			readonly string mReplace;
 
-			public CodeAssemblyNotFound(string replace)
+			public CodeAssemblyNotFound([NotNull] string replace)
 			{
 				mReplace = replace;
 			}
@@ -39,7 +44,7 @@ namespace ModernRonin.PraeterArtem.UnitTests._MetaAssertions_
 		#endregion
 
 
-		MetaAssertionsProject(Assembly testAssembly)
+		MetaAssertionsProject([NotNull] Assembly testAssembly)
 		{
 			TestAssembly = testAssembly;
 
@@ -48,15 +53,16 @@ namespace ModernRonin.PraeterArtem.UnitTests._MetaAssertions_
 			CodeAssembly = codeAssembly;
 
 			mTypes.AddRange(from t in CodeAssembly.GetTypes()
-					 select new MetaAssertionsType(t, TestAssembly));
+				select new MetaAssertionsType(t, TestAssembly));
 
 			mTypes.AddRange(from t in TestAssembly.GetTypes()
-					 select new MetaAssertionsType(t));
+				select new MetaAssertionsType(t));
 
-			mTypes.RemoveAll(t => ((MetaAssertionsType)t).IsCompilerGenerated);
+			mTypes.RemoveAll(t => ((MetaAssertionsType) t).IsCompilerGenerated);
 		}
 
-		Assembly GetCodeAssemblyForTestAssembly(Assembly testAssembly)
+		[CanBeNull]
+		Assembly GetCodeAssemblyForTestAssembly([NotNull] Assembly testAssembly)
 		{
 			var replace = new AssemblyName(testAssembly.FullName).Name.Replace(".UnitTests", "");
 			var assemblyName = testAssembly.GetReferencedAssemblies().SingleOrDefault(r => r.Name == replace);
@@ -70,9 +76,10 @@ namespace ModernRonin.PraeterArtem.UnitTests._MetaAssertions_
 		}
 
 		/// <typeparam name="TTest">Any type from TestAssembly</typeparam>
+		[NotNull]
 		public static MetaAssertionsProject FromSampleClass<TTest>()
 		{
-			return new MetaAssertionsProject(typeof(TTest).Assembly);
+			return new MetaAssertionsProject(typeof (TTest).Assembly);
 		}
 	}
 }

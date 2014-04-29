@@ -7,6 +7,7 @@ using System.Linq;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using FluentAssertions;
+using JetBrains.Annotations;
 using ModernRonin.PraeterArtem.Annotations;
 using ModernRonin.PraeterArtem.Reflection;
 using Xunit.Sdk;
@@ -18,8 +19,11 @@ namespace ModernRonin.PraeterArtem.UnitTests._MetaAssertions_
         readonly Assembly mTestAssembly;
         public TypeSource Source { get; private set; }
 
-        public Type TargetType { get; private set; }
-        public Type TestType { get { return GetUnitTest(TargetType, mTestAssembly); } }
+	    [NotNull]
+	    public Type TargetType { get; private set; }
+
+	    [NotNull]
+	    public Type TestType { get { return GetUnitTest(TargetType, mTestAssembly); } }
 
         public bool IsVirtual { get { return TargetType.HasAttribute<VirtualAttribute>(); } }
         public bool IsDataTransferObject { get { return TargetType.HasAttribute<DataTransferObjectAttribute>(); } }
@@ -52,19 +56,20 @@ namespace ModernRonin.PraeterArtem.UnitTests._MetaAssertions_
             }
         }
 
-        public MetaAssertionsType(Type testType)
+        public MetaAssertionsType([NotNull] Type testType)
         {
-            Source = TypeSource.TestAssembly;
-            TargetType = testType;
-        }
-        public MetaAssertionsType(Type codeType, Assembly testAssembly)
-        {
-            mTestAssembly = testAssembly;
-            Source = TypeSource.CodeAssembly;
-            TargetType = codeType;
+	        Source = TypeSource.TestAssembly;
+	        TargetType = testType;
         }
 
-        public override string ToString()
+	    public MetaAssertionsType([NotNull] Type codeType, [NotNull] Assembly testAssembly)
+	    {
+		    mTestAssembly = testAssembly;
+		    Source = TypeSource.CodeAssembly;
+		    TargetType = codeType;
+	    }
+
+	    public override string ToString()
         {
             return TargetType.ToString();
         }
@@ -105,7 +110,9 @@ namespace ModernRonin.PraeterArtem.UnitTests._MetaAssertions_
         }
 
         static HashSet<Type> sAttributesThatMeanNoUnitTestsNeeded;
-        public static HashSet<Type> AttributesThatMeanNoUnitTestsNeeded
+
+	    [NotNull]
+	    public static HashSet<Type> AttributesThatMeanNoUnitTestsNeeded
         {
             get
             {
@@ -119,7 +126,9 @@ namespace ModernRonin.PraeterArtem.UnitTests._MetaAssertions_
             }
         }
         static HashSet<Type> sAttributesThatMeanIntegrationTestNeeded;
-        public static HashSet<Type> AttributesThatMeanIntegrationTestNeeded
+
+	    [NotNull]
+	    public static HashSet<Type> AttributesThatMeanIntegrationTestNeeded
         {
             get
             {
@@ -132,23 +141,25 @@ namespace ModernRonin.PraeterArtem.UnitTests._MetaAssertions_
             }
         }
 
-        private static Type GetUnitTest(Type type, Assembly unitTestsAssembly)
-        {
-            var ns = type.Namespace;
-            if (ns == null) return null;
-            var root = SubstringOnLeftOfFirst(type.Assembly.FullName, ",");
-            var replace = ns.Replace(root, string.Format(
-				CultureInfo.InvariantCulture, "{0}.UnitTests", root));
-            var className = SubstringOnLeftOfFirst(type.Name, "`");
-            var name = replace + "." + className + "Tests";
-            Debug.WriteLine("Looking for: " + name);
-            return unitTestsAssembly.GetType(name);
-        }
+	    [NotNull]
+	    private static Type GetUnitTest([NotNull] Type type, [NotNull] Assembly unitTestsAssembly)
+	    {
+		    var ns = type.Namespace;
+		    if (ns == null) return null;
+		    var root = SubstringOnLeftOfFirst(type.Assembly.FullName, ",");
+		    var replace = ns.Replace(root, string.Format(
+			    CultureInfo.InvariantCulture, "{0}.UnitTests", root));
+		    var className = SubstringOnLeftOfFirst(type.Name, "`");
+		    var name = replace + "." + className + "Tests";
+		    Debug.WriteLine("Looking for: " + name);
+		    return unitTestsAssembly.GetType(name);
+	    }
 
-        private static string SubstringOnLeftOfFirst(string str, string sub)
-        {
-            var idx = str.IndexOf(sub, StringComparison.Ordinal);
-            return idx != -1 ? str.Substring(0, idx) : str;
-        }
+	    [NotNull]
+	    private static string SubstringOnLeftOfFirst([NotNull] string str, [NotNull] string sub)
+	    {
+		    var idx = str.IndexOf(sub, StringComparison.Ordinal);
+		    return idx != -1 ? str.Substring(0, idx) : str;
+	    }
     }
 }

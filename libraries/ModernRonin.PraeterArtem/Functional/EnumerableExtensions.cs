@@ -17,11 +17,12 @@ namespace ModernRonin.PraeterArtem.Functional
         /// <summary>
         ///     More readable replacement for !Any{T}.
         /// </summary>
-        public static bool IsEmpty<T>(this IEnumerable<T> enumerable)
+        public static bool IsEmpty<T>([NotNull] this IEnumerable<T> enumerable)
         {
-            return !enumerable.Any();
+	        return !enumerable.Any();
         }
-		// Ilya: I'd propose to call it "Foreach". The name that is really intuitive
+
+	    // Ilya: I'd propose to call it "Foreach". The name that is really intuitive
         /// <summary>
         ///     Passes each argument of <paramref name="enumerable" /> to <paramref name="action" />.
         /// </summary>
@@ -51,32 +52,38 @@ namespace ModernRonin.PraeterArtem.Functional
         /// <typeparam name="T"></typeparam>
         /// <param name="element"></param>
         /// <returns></returns>
-        public static IEnumerable<T> ToEnumerable<T>(this T element)
-        {
-            if (element is IEnumerable<T>)
-                return CastToEnumerable(element);
-            return WrapAsEnumerable(element);
-        }
-        static IEnumerable<T> CastToEnumerable<T>(T singleElement)
-        {
-            return singleElement as IEnumerable<T>;
-        }
-        static IEnumerable<T> WrapAsEnumerable<T>(T singleElement)
-        {
-            yield return singleElement;
-        }
-        /// <summary>
+	    [NotNull]
+	    public static IEnumerable<T> ToEnumerable<T>(this T element)
+	    {
+		    if (element is IEnumerable<T>)
+			    return CastToEnumerable(element);
+		    return WrapAsEnumerable(element);
+	    }
+
+	    [NotNull]
+	    static IEnumerable<T> CastToEnumerable<T>(T singleElement)
+	    {
+		    return (IEnumerable<T>) singleElement;
+	    }
+
+	    [NotNull]
+	    static IEnumerable<T> WrapAsEnumerable<T>(T singleElement)
+	    {
+		    yield return singleElement;
+	    }
+
+	    /// <summary>
         ///     Adds all element to <paramref name="destination" />.
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="enumerable"></param>
         /// <param name="destination"></param>
-        public static void AddTo<T>(this IEnumerable<T> enumerable,
-                                    ICollection<T> destination)
-        {
-            enumerable.UseIn(destination.Add);
-        }
-		// Ilya:
+        public static void AddTo<T>([NotNull] this IEnumerable<T> enumerable, [NotNull] ICollection<T> destination)
+	    {
+		    enumerable.UseIn(destination.Add);
+	    }
+
+	    // Ilya:
 		// I'm not sure that "blah.ExceptNullValues()" 
 		// is better then    "blah.Where(e => e != null)"
 		// not much shorter either.
@@ -86,12 +93,13 @@ namespace ModernRonin.PraeterArtem.Functional
         /// <typeparam name="T"></typeparam>
         /// <param name="enumerable"></param>
         /// <returns></returns>
-        public static IEnumerable<T> ExceptNullValues<T>(
-            this IEnumerable<T> enumerable) where T : class
+        [NotNull]
+        public static IEnumerable<T> ExceptNullValues<T>([NotNull] this IEnumerable<T> enumerable) where T : class
         {
-            return enumerable.Where(e => null != e);
+	        return enumerable.Where(e => null != e);
         }
-		// Ilya: in general I'm afraid that seeing 
+
+	    // Ilya: in general I'm afraid that seeing 
 		// "items.ButFirst()" would freak me out
 		// why not "items.Skip(1)" I would think?!
 
@@ -101,43 +109,46 @@ namespace ModernRonin.PraeterArtem.Functional
         /// <typeparam name="T"></typeparam>
         /// <param name="enumerable"></param>
         /// <returns></returns>
-        public static IEnumerable<T> ButFirst<T>(
-            this IEnumerable<T> enumerable)
+        [NotNull]
+        public static IEnumerable<T> ButFirst<T>([NotNull] this IEnumerable<T> enumerable)
         {
-            return enumerable.Skip(1);
+	        return enumerable.Skip(1);
         }
-        /// <summary>
+
+	    /// <summary>
         ///     Returns all elements except the last.
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="enumerable"></param>
         /// <returns></returns>
-        public static IEnumerable<T> ButLast<T>(
-            this IEnumerable<T> enumerable)
-        {
-            var enumerator = enumerable.GetEnumerator();
-            if (!enumerator.MoveNext())
-                yield break;
-            var first = enumerator.Current;
-            while (enumerator.MoveNext())
-            {
-                yield return first;
-                first = enumerator.Current;
-            }
-        }
-        /// <summary>
+	    [NotNull]
+	    public static IEnumerable<T> ButLast<T>([NotNull] this IEnumerable<T> enumerable)
+	    {
+		    var enumerator = enumerable.GetEnumerator();
+		    if (!enumerator.MoveNext())
+			    yield break;
+		    var first = enumerator.Current;
+		    while (enumerator.MoveNext())
+		    {
+			    yield return first;
+			    first = enumerator.Current;
+		    }
+	    }
+
+	    /// <summary>
         ///     Returns all elements of <paramref name="enumerable" /> except <paramref name="value" />/>.
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="enumerable"></param>
         /// <param name="value"></param>
         /// <returns></returns>
-        public static IEnumerable<T> Except<T>(
-            this IEnumerable<T> enumerable, T value)
-        {
-            return enumerable.Except(value.ToEnumerable());
-        }
-        /// <summary>
+	    [NotNull]
+	    public static IEnumerable<T> Except<T>([NotNull] this IEnumerable<T> enumerable, T value)
+	    {
+		    return enumerable.Except(value.ToEnumerable());
+	    }
+
+	    /// <summary>
         ///     Returns all elements of <paramref name="enumerable" />
         ///     which are greater than <paramref name="limit" />.
         /// </summary>
@@ -145,12 +156,14 @@ namespace ModernRonin.PraeterArtem.Functional
         /// <param name="enumerable"></param>
         /// <param name="limit"></param>
         /// <returns></returns>
-        public static IEnumerable<T> GreaterThan<T>(
-            this IEnumerable<T> enumerable, T limit) where T : IComparable<T>
-        {
-            return enumerable.Where(e => 0 < e.CompareTo(limit));
-        }
-        /// <summary>
+	    [NotNull]
+	    public static IEnumerable<T> GreaterThan<T>([NotNull] this IEnumerable<T> enumerable, T limit) 
+			where T : IComparable<T>
+	    {
+		    return enumerable.Where(e => 0 < e.CompareTo(limit));
+	    }
+
+	    /// <summary>
         ///     Returns all elements of <paramref name="enumerable" />
         ///     which are greater than or equal to <paramref name="limit" />.
         /// </summary>
@@ -158,12 +171,14 @@ namespace ModernRonin.PraeterArtem.Functional
         /// <param name="enumerable"></param>
         /// <param name="limit"></param>
         /// <returns></returns>
-        public static IEnumerable<T> GreaterThanOrEqualTo<T>(
-            this IEnumerable<T> enumerable, T limit) where T : IComparable<T>
-        {
-            return enumerable.Where(e => 0 <= e.CompareTo(limit));
-        }
-        /// <summary>
+	    [NotNull]
+	    public static IEnumerable<T> GreaterThanOrEqualTo<T>([NotNull] 
+			this IEnumerable<T> enumerable, T limit) where T : IComparable<T>
+	    {
+		    return enumerable.Where(e => 0 <= e.CompareTo(limit));
+	    }
+
+	    /// <summary>
         ///     Returns all elements of <paramref name="enumerable" />
         ///     which are smaller than <paramref name="limit" />.
         /// </summary>
@@ -171,12 +186,14 @@ namespace ModernRonin.PraeterArtem.Functional
         /// <param name="enumerable"></param>
         /// <param name="limit"></param>
         /// <returns></returns>
-        public static IEnumerable<T> SmallerThan<T>(
-            this IEnumerable<T> enumerable, T limit) where T : IComparable<T>
-        {
-            return enumerable.Where(e => 0 > e.CompareTo(limit));
-        }
-        /// <summary>
+	    [NotNull]
+	    public static IEnumerable<T> SmallerThan<T>([NotNull] 
+			this IEnumerable<T> enumerable, T limit) where T : IComparable<T>
+	    {
+		    return enumerable.Where(e => 0 > e.CompareTo(limit));
+	    }
+
+	    /// <summary>
         ///     Returns all elements of <paramref name="enumerable" />
         ///     which are smaller than or equal to<paramref name="limit" />.
         /// </summary>
@@ -184,24 +201,27 @@ namespace ModernRonin.PraeterArtem.Functional
         /// <param name="enumerable"></param>
         /// <param name="limit"></param>
         /// <returns></returns>
-        public static IEnumerable<T> SmallerThanOrEqualTo<T>(
-            this IEnumerable<T> enumerable, T limit) where T : IComparable<T>
-        {
-            return enumerable.Where(e => 0 >= e.CompareTo(limit));
-        }
-        /// <summary>
+	    [NotNull]
+	    public static IEnumerable<T> SmallerThanOrEqualTo<T>([NotNull]
+			this IEnumerable<T> enumerable, T limit) where T : IComparable<T>
+	    {
+		    return enumerable.Where(e => 0 >= e.CompareTo(limit));
+	    }
+
+	    /// <summary>
         ///     Returns all elements of <paramref name="enumerable" /> which are equal to <paramref name="check" />
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="enumerable"></param>
         /// <param name="check"></param>
         /// <returns></returns>
-        public static IEnumerable<T> EqualTo<T>(
-            this IEnumerable<T> enumerable, T check)
-        {
-            return enumerable.Where(e => e.Equals(check));
-        }
-        /// <summary>
+	    [NotNull]
+	    public static IEnumerable<T> EqualTo<T>([NotNull] this IEnumerable<T> enumerable, T check)
+	    {
+		    return enumerable.Where(e => e.Equals(check));
+	    }
+
+	    /// <summary>
         ///     Returns all elements of <paramref name="enumerable" />
         ///     which are reference-equal to <paramref name="check" />.
         /// </summary>
@@ -209,12 +229,13 @@ namespace ModernRonin.PraeterArtem.Functional
         /// <param name="enumerable"></param>
         /// <param name="check"></param>
         /// <returns></returns>
-        public static IEnumerable<T> SameAs<T>(
-            this IEnumerable<T> enumerable, T check)
-        {
-            return enumerable.Where(e => ReferenceEquals(e, check));
-        }
-        /// <summary>
+	    [NotNull]
+	    public static IEnumerable<T> SameAs<T>([NotNull] this IEnumerable<T> enumerable, T check)
+	    {
+		    return enumerable.Where(e => ReferenceEquals(e, check));
+	    }
+
+	    /// <summary>
         ///     Returns the element of <paramref name="enumerable" />
         ///     with the smallest evaluation when passed to <paramref name="evaluator" />.
         ///     (In contrast to the BCL .Min() method which returns the minimal value, not the
@@ -251,12 +272,14 @@ namespace ModernRonin.PraeterArtem.Functional
         /// <param name="enumerable"></param>
         /// <param name="evaluator"></param>
         /// <returns></returns>
-        public static T MaxElement<T>(this IEnumerable<T> enumerable,
-                                      Func<T, int> evaluator)
+        public static T MaxElement<T>(
+			[NotNull] this IEnumerable<T> enumerable,
+			[NotNull] Func<T, int> evaluator)
         {
-            return enumerable.MinElement(e => -evaluator(e));
+	        return enumerable.MinElement(e => -evaluator(e));
         }
-		// Ilya: elements.Min(5) is a bit obscure.
+
+	    // Ilya: elements.Min(5) is a bit obscure.
 		// May be elements.MinOrDefault(5)?
         /// <summary>
         ///     Overload for the BCL .Min() method
@@ -267,14 +290,14 @@ namespace ModernRonin.PraeterArtem.Functional
         /// <param name="enumerable"></param>
         /// <param name="valueToReturnIfEmpty"></param>
         /// <returns></returns>
-        public static T Min<T>(this IEnumerable<T> enumerable,
-                               T valueToReturnIfEmpty)
-            where T : IComparable<T>
+        public static T Min<T>([NotNull] this IEnumerable<T> enumerable,
+                               T valueToReturnIfEmpty) where T : IComparable<T>
         {
-            var frozen = enumerable as T[] ?? enumerable.ToArray();
-            return frozen.Any() ? frozen.Min() : valueToReturnIfEmpty;
+	        var frozen = enumerable as T[] ?? enumerable.ToArray();
+	        return frozen.Any() ? frozen.Min() : valueToReturnIfEmpty;
         }
-        /// <summary>
+
+	    /// <summary>
         ///     Overload for the BCL .Max() method
         ///     which allows to pass a value to be used in case
         ///     <paramref name="enumerable" /> is empty.
@@ -283,12 +306,11 @@ namespace ModernRonin.PraeterArtem.Functional
         /// <param name="enumerable"></param>
         /// <param name="valueToReturnIfEmpty"></param>
         /// <returns></returns>
-        public static T Max<T>(this IEnumerable<T> enumerable,
-                               T valueToReturnIfEmpty)
-            where T : IComparable<T>
-        {
-            var frozen = enumerable as T[] ?? enumerable.ToArray();
-            return frozen.Any() ? frozen.Max() : valueToReturnIfEmpty;
-        }
+        public static T Max<T>([NotNull] this IEnumerable<T> enumerable,
+                               T valueToReturnIfEmpty) where T : IComparable<T>
+	    {
+		    var frozen = enumerable as T[] ?? enumerable.ToArray();
+		    return frozen.Any() ? frozen.Max() : valueToReturnIfEmpty;
+	    }
     }
 }

@@ -9,9 +9,10 @@ namespace JetBrains.Annotations
 	[AttributeUsage(AttributeTargets.All)]
 	public sealed class PublicApiAttribute : Attribute
 	{
+		[NotNull]
 		public string Comment { get; private set; }
 		public PublicApiAttribute() {}
-		public PublicApiAttribute(string comment)
+		public PublicApiAttribute([NotNull] string comment)
 		{
 			Comment = comment;
 		}

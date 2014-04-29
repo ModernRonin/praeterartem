@@ -14,7 +14,7 @@ namespace JetBrains.Annotations
 		/// Initializes new instance of StringFormatMethodAttribute
 		/// </summary>
 		/// <param name="formatParameterName">Specifies which parameter of an annotated method should be treated as format-string</param>
-		public StringFormatMethodAttribute(string formatParameterName)
+		public StringFormatMethodAttribute([NotNull] string formatParameterName)
 		{
 			FormatParameterName = formatParameterName;
 		}
@@ -22,7 +22,7 @@ namespace JetBrains.Annotations
 		/// <summary>
 		/// Gets format parameter name
 		/// </summary>
-		[UsedImplicitly]
+		[NotNull][UsedImplicitly]
 		public string FormatParameterName { get; private set; }
 	}
 }

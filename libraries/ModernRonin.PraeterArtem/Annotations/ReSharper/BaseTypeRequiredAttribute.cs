@@ -29,7 +29,7 @@ namespace JetBrains.Annotations
 		/// Initializes new instance of BaseTypeRequiredAttribute
 		/// </summary>
 		/// <param name="baseType">Specifies which types are required</param>
-		public BaseTypeRequiredAttribute(Type baseType)
+		public BaseTypeRequiredAttribute([NotNull] Type baseType)
 		{
 			BaseTypes = new[] {baseType};
 		}
@@ -37,7 +37,7 @@ namespace JetBrains.Annotations
 		/// <summary>
 		/// Gets enumerations of specified base types
 		/// </summary>
-		[SuppressMessage("Microsoft.Performance",
+		[NotNull][SuppressMessage("Microsoft.Performance",
 			"CA1819:PropertiesShouldNotReturnArrays",
 			Justification = "It is JetBrains code")]
 		public Type[] BaseTypes { get; private set; }

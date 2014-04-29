@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using FluentAssertions;
+using JetBrains.Annotations;
 using ModernRonin.PraeterArtem.Functional;
 using Xunit;
 using Xunit.Extensions;
@@ -14,11 +15,12 @@ namespace ModernRonin.PraeterArtem.UnitTests.Functional
 		[InlineData(new int[] { }, true)]
 		[InlineData(new[] { 1, 2, 3 }, false)]
 		[InlineData(new[] { 1 }, false)]
-        public void IsEmpty(int[] enumerable, bool expectedResult)
-        {
-            enumerable.IsEmpty().Should().Be(expectedResult);
-        }
-        [Fact]
+        public void IsEmpty([NotNull] int[] enumerable, bool expectedResult)
+		{
+			enumerable.IsEmpty().Should().Be(expectedResult);
+		}
+
+	    [Fact]
         public void UseIn_Calls_Action_For_Each_Element()
         {
             var used = new List<int>();
@@ -245,12 +247,12 @@ namespace ModernRonin.PraeterArtem.UnitTests.Functional
         {
             readonly IEnumerable<TypeImplementingIEnumerableOfItself>
                 mChildren;
-            public TypeImplementingIEnumerableOfItself(
-                IEnumerable<TypeImplementingIEnumerableOfItself> children)
+            public TypeImplementingIEnumerableOfItself([NotNull] IEnumerable<TypeImplementingIEnumerableOfItself> children)
             {
-                mChildren = children;
+	            mChildren = children;
             }
-            public IEnumerator<TypeImplementingIEnumerableOfItself>
+
+	        public IEnumerator<TypeImplementingIEnumerableOfItself>
                 GetEnumerator()
             {
                 return mChildren.GetEnumerator();

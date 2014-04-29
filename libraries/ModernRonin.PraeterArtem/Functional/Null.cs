@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using JetBrains.Annotations;
 
 namespace ModernRonin.PraeterArtem.Functional
 {
@@ -7,18 +8,22 @@ namespace ModernRonin.PraeterArtem.Functional
     {
 		// Ilya: Delete this. There is Enumerable.Empty<T>()
 		// which resharper finds if you press Control+Alt+Space
-        public static IEnumerable<T> Enumerable<T>()
-        {
-			return System.Linq.Enumerable.Empty<T>();
-        }
-        public static Action Action()
-        {
-            return () => { };
-        }
-        public static Action<T> Action<T>()
-        {
-            return _ => { };
-        }
+	    [NotNull]
+	    public static IEnumerable<T> Enumerable<T>()
+	    {
+		    return System.Linq.Enumerable.Empty<T>();
+	    }
 
+	    [NotNull]
+	    public static Action Action()
+	    {
+		    return () => { };
+	    }
+
+	    [NotNull]
+	    public static Action<T> Action<T>()
+	    {
+		    return _ => { };
+	    }
     }
 }

@@ -10,12 +10,12 @@ namespace JetBrains.Annotations
 		public PathReferenceAttribute() {}
 
 		[UsedImplicitly]
-		public PathReferenceAttribute([PathReference] string basePath)
+		public PathReferenceAttribute([NotNull, PathReference] string basePath)
 		{
 			BasePath = basePath;
 		}
 
-		[UsedImplicitly]
+		[NotNull,UsedImplicitly]
 		public string BasePath { get; private set; }
 	}
 }

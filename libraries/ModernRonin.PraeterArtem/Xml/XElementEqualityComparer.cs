@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Linq;
+using JetBrains.Annotations;
 
 namespace ModernRonin.PraeterArtem.Xml
 {
@@ -11,36 +12,39 @@ namespace ModernRonin.PraeterArtem.Xml
     /// </summary>
     public sealed class XElementEqualityComparer : IEqualityComparer<XElement>
     {
-        public bool Equals(XElement x, XElement y)
+        public bool Equals([NotNull] XElement x, [NotNull] XElement y)
         {
-            return XNode.DeepEquals(Normalize(x), Normalize(y));
+	        return XNode.DeepEquals(Normalize(x), Normalize(y));
         }
-        public int GetHashCode(XElement obj)
-        {
-            return Normalize(obj).GetHashCode();
-        }
-        static XElement Normalize(XElement element)
-        {
-            if (element.HasElements)
-            {
-                return new XElement(element.Name,
-                    element.Attributes()
-                           .Where(a => a.Name.Namespace == XNamespace.Xmlns)
-                           .OrderBy(a => a.Name.ToString()),
-                    element.Elements()
-                           .OrderBy(a => a.Name.ToString())
-                           .Select(Normalize));
-            }
 
-            if (element.IsEmpty || string.IsNullOrEmpty(element.Value))
-            {
-                return new XElement(element.Name,
-                    element.Attributes().OrderBy(a => a.Name.ToString()));
-            }
-
-            return new XElement(element.Name,
-                element.Attributes().OrderBy(a => a.Name.ToString()),
-                element.Value);
+	    public int GetHashCode([NotNull] XElement obj)
+        {
+	        return Normalize(obj).GetHashCode();
         }
+
+	    [NotNull]
+	    static XElement Normalize([NotNull] XElement element)
+	    {
+		    if (element.HasElements)
+		    {
+			    return new XElement(element.Name,
+				    element.Attributes()
+					    .Where(a => a.Name.Namespace == XNamespace.Xmlns)
+					    .OrderBy(a => a.Name.ToString()),
+				    element.Elements()
+					    .OrderBy(a => a.Name.ToString())
+					    .Select(Normalize));
+		    }
+
+		    if (element.IsEmpty || string.IsNullOrEmpty(element.Value))
+		    {
+			    return new XElement(element.Name,
+				    element.Attributes().OrderBy(a => a.Name.ToString()));
+		    }
+
+		    return new XElement(element.Name,
+			    element.Attributes().OrderBy(a => a.Name.ToString()),
+			    element.Value);
+	    }
     }
 }
