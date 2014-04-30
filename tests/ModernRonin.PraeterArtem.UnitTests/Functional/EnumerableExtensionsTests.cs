@@ -245,9 +245,8 @@ namespace ModernRonin.PraeterArtem.UnitTests.Functional
         sealed class TypeImplementingIEnumerableOfItself :
             IEnumerable<TypeImplementingIEnumerableOfItself>
         {
-            readonly IEnumerable<TypeImplementingIEnumerableOfItself>
-                mChildren;
-            public TypeImplementingIEnumerableOfItself([NotNull] IEnumerable<TypeImplementingIEnumerableOfItself> children)
+            readonly IEnumerable<TypeImplementingIEnumerableOfItself> mChildren;
+            public TypeImplementingIEnumerableOfItself([CanBeNull] IEnumerable<TypeImplementingIEnumerableOfItself> children)
             {
 	            mChildren = children;
             }

@@ -7,7 +7,7 @@ namespace ModernRonin.PraeterArtem.UnitTests.Xml
 {
 	public sealed class XElementEqualityComparerTests
     {
-        XElementEqualityComparer mUnderTest;
+		readonly XElementEqualityComparer mUnderTest;
 
 		public XElementEqualityComparerTests()
 		{

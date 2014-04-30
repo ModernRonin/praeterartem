@@ -6,13 +6,9 @@ using Xunit.Sdk;
 
 namespace ModernRonin.PraeterArtem.UnitTests._MetaAssertions_
 {
-	public sealed class MetaAssertionsProject 
+	public sealed class MetaAssertionsProject
 	{
-		[NotNull]
-		public Assembly CodeAssembly { get; private set; }
-
-		[NotNull]
-		public Assembly TestAssembly { get; private set; }
+		[NotNull] private readonly Assembly mTestAssembly;
 
 		[NotNull] private readonly List<IMetaAssertionsType> mTypes = new List<IMetaAssertionsType>();
 
@@ -46,16 +42,15 @@ namespace ModernRonin.PraeterArtem.UnitTests._MetaAssertions_
 
 		MetaAssertionsProject([NotNull] Assembly testAssembly)
 		{
-			TestAssembly = testAssembly;
+			mTestAssembly = testAssembly;
 
 			var codeAssembly = GetCodeAssemblyForTestAssembly(testAssembly);
 			if (codeAssembly == null) return;
-			CodeAssembly = codeAssembly;
 
-			mTypes.AddRange(from t in CodeAssembly.GetTypes()
-				select new MetaAssertionsType(t, TestAssembly));
+			mTypes.AddRange(from t in codeAssembly.GetTypes()
+				select new MetaAssertionsType(t, mTestAssembly));
 
-			mTypes.AddRange(from t in TestAssembly.GetTypes()
+			mTypes.AddRange(from t in mTestAssembly.GetTypes()
 				select new MetaAssertionsType(t));
 
 			mTypes.RemoveAll(t => ((MetaAssertionsType) t).IsCompilerGenerated);

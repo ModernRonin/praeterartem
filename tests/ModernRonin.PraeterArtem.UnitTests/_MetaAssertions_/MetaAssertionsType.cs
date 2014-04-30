@@ -17,40 +17,39 @@ namespace ModernRonin.PraeterArtem.UnitTests._MetaAssertions_
     public sealed class MetaAssertionsType : IMetaAssertionsType
     {
         readonly Assembly mTestAssembly;
-        public TypeSource Source { get; private set; }
+	    private readonly TypeSource mSource;
 
-	    [NotNull]
-	    public Type TargetType { get; private set; }
+	    [NotNull] private readonly Type mTargetType;
 
-	    [NotNull]
-	    public Type TestType { get { return GetUnitTest(TargetType, mTestAssembly); } }
+	    [CanBeNull]
+		 Type TestType { get { return GetUnitTest(mTargetType, mTestAssembly); } }
 
-        public bool IsVirtual { get { return TargetType.HasAttribute<VirtualAttribute>(); } }
-        public bool IsDataTransferObject { get { return TargetType.HasAttribute<DataTransferObjectAttribute>(); } }
-        public bool IsUnitTestsNeeded
+         bool IsVirtual { get { return mTargetType.HasAttribute<VirtualAttribute>(); } }
+         bool IsDataTransferObject { get { return mTargetType.HasAttribute<DataTransferObjectAttribute>(); } }
+         bool IsUnitTestsNeeded
         {
             get
             {
-                return !TargetType
+                return !mTargetType
                     .GetCustomAttributes(false)
                     .Any(x => AttributesThatMeanNoUnitTestsNeeded.Contains(x.GetType()));
             }
         }
-        public bool HasPublicMethods { get { return TargetType.HasPublicMethods(); } }
+         bool HasPublicMethods { get { return mTargetType.HasPublicMethods(); } }
         public bool IsCompilerGenerated
         {
             get
             {
-                return TargetType.FullName.Contains("JetBrains.Profiler.Core.Instrumentation")
-                    || TargetType.HasAttribute<CompilerGeneratedAttribute>();
+                return mTargetType.FullName.Contains("JetBrains.Profiler.Core.Instrumentation")
+                    || mTargetType.HasAttribute<CompilerGeneratedAttribute>();
             }
         }
-        public bool HasSpecialNamespace
+         bool HasSpecialNamespace
         {
             get
             {
-                return TargetType.Namespace != null &&
-                       TargetType.Namespace.Split('.').Any(part =>
+                return mTargetType.Namespace != null &&
+                       mTargetType.Namespace.Split('.').Any(part =>
                           part.StartsWith("_", StringComparison.Ordinal) && 
 						  part.EndsWith("_", StringComparison.Ordinal));
             }
@@ -58,50 +57,50 @@ namespace ModernRonin.PraeterArtem.UnitTests._MetaAssertions_
 
         public MetaAssertionsType([NotNull] Type testType)
         {
-	        Source = TypeSource.TestAssembly;
-	        TargetType = testType;
+	        mSource = TypeSource.TestAssembly;
+	        mTargetType = testType;
         }
 
 	    public MetaAssertionsType([NotNull] Type codeType, [NotNull] Assembly testAssembly)
 	    {
 		    mTestAssembly = testAssembly;
-		    Source = TypeSource.CodeAssembly;
-		    TargetType = codeType;
+		    mSource = TypeSource.CodeAssembly;
+		    mTargetType = codeType;
 	    }
 
 	    public override string ToString()
         {
-            return TargetType.ToString();
+            return mTargetType.ToString();
         }
 
         public void Check()
         {
-            Debug.WriteLine(TargetType.ToString());
+            Debug.WriteLine(mTargetType.ToString());
 
-            if (Source == TypeSource.CodeAssembly)
+            if (mSource == TypeSource.CodeAssembly)
                 if (IsUnitTestsNeeded)
-					if (TargetType.Namespace != null)
-					if (TargetType.Namespace != "JetBrains.Annotations")
-					if (!TargetType.Namespace.EndsWith("Migrations", StringComparison.Ordinal))
-					if (!TargetType.IsEnum && !TargetType.IsInterface)
-                        if (TargetType.IsNestedPublic || !TargetType.IsNested)
+					if (mTargetType.Namespace != null)
+					if (mTargetType.Namespace != "JetBrains.Annotations")
+					if (!mTargetType.Namespace.EndsWith("Migrations", StringComparison.Ordinal))
+					if (!mTargetType.IsEnum && !mTargetType.IsInterface)
+                        if (mTargetType.IsNestedPublic || !mTargetType.IsNested)
 								if (TestType == null)
 									throw new AssertException("Every code type should have test " +
 										"\r\nor should be marked with one of the attributes " +
 										string.Join("\r\n", AttributesThatMeanNoUnitTestsNeeded
 										.Select(x => "[" + x.Name.Replace("Attribute", "") + "]")));
 
-            if (Source == TypeSource.TestAssembly)
-                if (TargetType.IsClass && !TargetType.IsNested && !HasSpecialNamespace)
+            if (mSource == TypeSource.TestAssembly)
+                if (mTargetType.IsClass && !mTargetType.IsNested && !HasSpecialNamespace)
                 {
-                    TargetType.IsPublic.Should().BeTrue("Every test type should be public");
+                    mTargetType.IsPublic.Should().BeTrue("Every test type should be public");
 
-                    TargetType.Name.Should().EndWith("Tests",
+                    mTargetType.Name.Should().EndWith("Tests",
                         "Every test type should have name ending with 'Tests'");
                 }
 
-            if (TargetType.IsClass && !TargetType.IsAbstract)
-                TargetType.IsSealed.Should().Be(!IsVirtual,
+            if (mTargetType.IsClass && !mTargetType.IsAbstract)
+                mTargetType.IsSealed.Should().Be(!IsVirtual,
                     "Every type should be either sealed, or [Virtual], or abstract");
 
             if (IsDataTransferObject)
@@ -112,7 +111,7 @@ namespace ModernRonin.PraeterArtem.UnitTests._MetaAssertions_
         static HashSet<Type> sAttributesThatMeanNoUnitTestsNeeded;
 
 	    [NotNull]
-	    public static HashSet<Type> AttributesThatMeanNoUnitTestsNeeded
+	    static HashSet<Type> AttributesThatMeanNoUnitTestsNeeded
         {
             get
             {
@@ -125,23 +124,8 @@ namespace ModernRonin.PraeterArtem.UnitTests._MetaAssertions_
                            .ToList()));
             }
         }
-        static HashSet<Type> sAttributesThatMeanIntegrationTestNeeded;
-
-	    [NotNull]
-	    public static HashSet<Type> AttributesThatMeanIntegrationTestNeeded
-        {
-            get
-            {
-                return sAttributesThatMeanIntegrationTestNeeded ??
-                      (sAttributesThatMeanIntegrationTestNeeded =
-                       new HashSet<Type>(
-                           typeof(MeansIntegrationTestNeededAttribute).Assembly.GetTypes()
-                           .Where(x => x.HasAttribute<MeansIntegrationTestNeededAttribute>())
-                           .ToList()));
-            }
-        }
-
-	    [NotNull]
+      
+	    [CanBeNull]
 	    private static Type GetUnitTest([NotNull] Type type, [NotNull] Assembly unitTestsAssembly)
 	    {
 		    var ns = type.Namespace;
