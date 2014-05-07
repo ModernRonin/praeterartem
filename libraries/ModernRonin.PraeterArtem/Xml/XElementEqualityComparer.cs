@@ -10,41 +10,40 @@ namespace ModernRonin.PraeterArtem.Xml
     ///     which deals correctly with changed order of attributes or child
     ///     nodes, in contrast to <see cref="XNode.DeepEquals" />.
     /// </summary>
-    public sealed class XElementEqualityComparer : IEqualityComparer<XElement>
+    public sealed class XElementEqualityComparer :
+        IEqualityComparer<XElement>
     {
         public bool Equals([NotNull] XElement x, [NotNull] XElement y)
         {
-	        return XNode.DeepEquals(Normalize(x), Normalize(y));
+            var lhs = Normalize(x);
+            var rhs = Normalize(y);
+            return XNode.DeepEquals(lhs, rhs);
         }
-
-	    public int GetHashCode([NotNull] XElement obj)
+        public int GetHashCode([NotNull] XElement obj)
         {
-	        return Normalize(obj).GetHashCode();
+            return Normalize(obj).GetHashCode();
         }
+        [NotNull]
+        static XElement Normalize([NotNull] XElement element)
+        {
+            if (element.HasElements)
+            {
+                return new XElement(element.Name,
+                    element.Attributes().OrderBy(a => a.Name.ToString()),
+                    element.Elements()
+                           .OrderBy(a => a.Name.ToString())
+                           .Select(Normalize));
+            }
 
-	    [NotNull]
-	    static XElement Normalize([NotNull] XElement element)
-	    {
-		    if (element.HasElements)
-		    {
-			    return new XElement(element.Name,
-				    element.Attributes()
-					    .Where(a => a.Name.Namespace == XNamespace.Xmlns)
-					    .OrderBy(a => a.Name.ToString()),
-				    element.Elements()
-					    .OrderBy(a => a.Name.ToString())
-					    .Select(Normalize));
-		    }
+            if (element.IsEmpty || string.IsNullOrEmpty(element.Value))
+            {
+                return new XElement(element.Name,
+                    element.Attributes().OrderBy(a => a.Name.ToString()));
+            }
 
-		    if (element.IsEmpty || string.IsNullOrEmpty(element.Value))
-		    {
-			    return new XElement(element.Name,
-				    element.Attributes().OrderBy(a => a.Name.ToString()));
-		    }
-
-		    return new XElement(element.Name,
-			    element.Attributes().OrderBy(a => a.Name.ToString()),
-			    element.Value);
-	    }
+            return new XElement(element.Name,
+                element.Attributes().OrderBy(a => a.Name.ToString()),
+                element.Value);
+        }
     }
 }
