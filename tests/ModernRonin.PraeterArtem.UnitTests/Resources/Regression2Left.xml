@@ -1,15 +1,4 @@
 ﻿<testcase internalid="3387" name="Cattle">
-  <node_order><![CDATA[102]]></node_order>
-  <externalid><![CDATA[5]]></externalid>
-  <version><![CDATA[1]]></version>
-  <summary>
-    <![CDATA[<p>
-  	Demo Testfall f&uuml;r Entity cattle.</p>
-  ]]>
-  </summary>
-  <preconditions><![CDATA[]]></preconditions>
-  <execution_type><![CDATA[2]]></execution_type>
-  <importance><![CDATA[2]]></importance>
   <steps>
     <step>
       <step_number><![CDATA[1]]></step_number>
