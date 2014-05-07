@@ -1,12 +1,5 @@
-﻿<step>
-  <actions>
-    <![CDATA[<p>
+﻿<actions>
+  <![CDATA[<p>
   	Module Navigate: &quot;core&quot; &quot;cattleGea&quot;</p>
   ]]>
-  </actions>
-  <expectedresults>
-    <![CDATA[<p>
-  	Assert text &quot;Max Mustermann Hof&quot;</p>
-  ]]>
-  </expectedresults>
-</step>
+</actions>
