@@ -1,40 +1,14 @@
-﻿<steps>
-  <step>
-    <step_number><![CDATA[1]]></step_number>
-    <actions>
-      <![CDATA[<p>
+﻿<step>
+  <step_number><![CDATA[1]]></step_number>
+  <actions>
+    <![CDATA[<p>
 	Module Navigate: &quot;core&quot; &quot;cattleGea&quot;</p>
 ]]>
-    </actions>
-    <expectedresults>
-      <![CDATA[<p>
+  </actions>
+  <expectedresults>
+    <![CDATA[<p>
 	Assert text &quot;Max Mustermann Hof&quot;</p>
 ]]>
-    </expectedresults>
-    <execution_type><![CDATA[2]]></execution_type>
-  </step>
-  <step>
-    <step_number><![CDATA[2]]></step_number>
-    <actions>
-      <![CDATA[<p>
-	Click &quot;//span[contains(text(), &#39;Erstellen&#39;)]&quot; &quot;Stammdaten&quot;</p>
-]]>
-    </actions>
-    <expectedresults><![CDATA[]]></expectedresults>
-    <execution_type><![CDATA[2]]></execution_type>
-  </step>
-  <step>
-    <step_number><![CDATA[3]]></step_number>
-    <actions>
-      <![CDATA[<p>
-	Module dialog.CattleDlgGen: &quot;Create&quot; &quot;Selenium&quot; &quot;1234567890&quot; &quot;GT&quot; &quot;&quot; &quot;4352&quot; &quot;6654&quot; &quot;&quot; &quot;&quot; &quot;&quot;</p>
-]]>
-    </actions>
-    <expectedresults>
-      <![CDATA[<p>
-	Assert text &quot;Stammdaten&quot;</p>
-]]>
-    </expectedresults>
-    <execution_type><![CDATA[2]]></execution_type>
-  </step>
-</steps>
+  </expectedresults>
+  <execution_type><![CDATA[2]]></execution_type>
+</step>
