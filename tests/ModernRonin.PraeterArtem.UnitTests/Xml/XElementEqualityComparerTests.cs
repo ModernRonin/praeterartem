@@ -1,5 +1,6 @@
 using System.Xml.Linq;
 using FluentAssertions;
+using ModernRonin.PraeterArtem.UnitTests.Properties;
 using ModernRonin.PraeterArtem.Xml;
 using Xunit;
 
@@ -20,6 +21,20 @@ namespace ModernRonin.PraeterArtem.UnitTests.Xml
 			var rhs = XElement.Parse("<Alpha charlie=\"2\" bravo=\"1\"/>");
             mUnderTest.Equals(lhs, rhs).Should().BeTrue();
         }
+	    [Fact]
+	    public void Different_Attribute_Values_Result_In_NotEqual()
+	    {
+            var lhs = XElement.Parse("<Alpha bravo=\"1\" charlie=\"2\"/>");
+            var rhs = XElement.Parse("<Alpha bravo=\"2\" charlie=\"1\"/>");
+            mUnderTest.Equals(lhs, rhs).Should().BeFalse();
+	    }
+	    [Fact]
+	    public void Regression_1()
+	    {
+            var lhs = XElement.Parse(Resources.Regression1Left);
+            var rhs = XElement.Parse(Resources.Regression1Right);
+            mUnderTest.Equals(lhs, rhs).Should().BeFalse();
+	    }
         [Fact]
         public void SeparateCloseTagOrNotDoesNotMatter()
         {
