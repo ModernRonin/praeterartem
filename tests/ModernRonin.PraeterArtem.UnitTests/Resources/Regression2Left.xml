@@ -227,16 +227,4 @@
   <Alpha bravo="1">
     <Charlie />
   </Alpha>
-  <Path path="ContainsOnlyNonXml" fullPath="ContainsOnlyNonXml">
-  </Path>
-  <Path path="SubFolder" fullPath="SubFolder">
-    <Alpha bravo="2">
-      <Delta />
-    </Alpha>
-    <Path path="Deeper" fullPath="SubFolder/Deeper">
-      <Lima Mike="2">
-        <November>Oscar</November>
-      </Lima>
-    </Path>
-  </Path>
 </Root>
