@@ -29,6 +29,13 @@ namespace ModernRonin.PraeterArtem.UnitTests.Xml
             mUnderTest.Equals(lhs, rhs).Should().BeFalse();
 	    }
 	    [Fact]
+	    public void Different_Attribute_Values_With_Nested_Node_Result_In_NotEqual()
+	    {
+            var lhs = XElement.Parse("<Alpha bravo=\"1\"><Charlie/></Alpha>");
+            var rhs = XElement.Parse("<Alpha bravo=\"2\"><Charlie/></Alpha>");
+            mUnderTest.Equals(lhs, rhs).Should().BeFalse();
+	    }
+	    [Fact]
 	    public void Regression_1()
 	    {
             var lhs = XElement.Parse(Resources.Regression1Left);
