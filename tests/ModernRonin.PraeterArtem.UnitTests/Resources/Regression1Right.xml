@@ -1,3 +1,19 @@
-﻿<Path fullPath="Deep">
-  <Hotel />
-</Path>
+﻿<Root path="/" fullPath="/">
+  <Alpha bravo="1">
+    <Charlie />
+  </Alpha>
+  <Delta>
+    <Echo />
+  </Delta>
+  <Path path="Empty" fullPath="Empty" />
+  <Path path="Sub" fullPath="Sub">
+    <Foxtrott>
+      <Golf />
+    </Foxtrott>
+    <Path path="Deep" fullPath="Deep">
+      <Hotel>
+        <India />
+      </Hotel>
+    </Path>
+  </Path>
+</Root>
