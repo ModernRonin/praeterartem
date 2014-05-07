@@ -1,5 +1,4 @@
 ﻿<step>
-  <step_number><![CDATA[1]]></step_number>
   <actions>
     <![CDATA[<p>
 	Module Navigate: &quot;core&quot; &quot;cattleGea&quot;</p>
@@ -10,5 +9,4 @@
 	Assert text &quot;Max Mustermann Hof&quot;</p>
 ]]>
   </expectedresults>
-  <execution_type><![CDATA[2]]></execution_type>
 </step>
