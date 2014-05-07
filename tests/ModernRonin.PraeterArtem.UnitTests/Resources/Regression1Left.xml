@@ -1,0 +1,12 @@
+<Root path="/" fullPath="/">
+  <Alpha bravo="1"><Charlie /></Alpha>
+  <Delta><Echo /></Delta>
+  <Path path="Empty" fullPath="Empty">
+  </Path>
+  <Path path="Sub" fullPath="Sub">
+    <Foxtrott><Golf /></Foxtrott>
+    <Path path="Deep" fullPath="Sub/Deep">
+      <Hotel><India /></Hotel>
+    </Path>
+  </Path>
+</Root>

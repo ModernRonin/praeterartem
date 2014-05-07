@@ -117,39 +117,11 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Regression1Left" xml:space="preserve">
-    <value>&lt;Root path="/" fullPath="/"&gt;
-  &lt;Alpha bravo="1"&gt;&lt;Charlie /&gt;&lt;/Alpha&gt;
-  &lt;Delta&gt;&lt;Echo /&gt;&lt;/Delta&gt;
-  &lt;Path path="Empty" fullPath="Empty"&gt;
-  &lt;/Path&gt;
-  &lt;Path path="Sub" fullPath="Sub"&gt;
-    &lt;Foxtrott&gt;&lt;Golf /&gt;&lt;/Foxtrott&gt;
-    &lt;Path path="Deep" fullPath="Sub/Deep"&gt;
-      &lt;Hotel&gt;&lt;India /&gt;&lt;/Hotel&gt;
-    &lt;/Path&gt;
-  &lt;/Path&gt;
-&lt;/Root&gt;</value>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="Regression1Left" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Regression1Left.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
   </data>
-  <data name="Regression1Right" xml:space="preserve">
-    <value>&lt;Root path="/" fullPath="/"&gt;
-  &lt;Alpha bravo="1"&gt;
-    &lt;Charlie /&gt;
-  &lt;/Alpha&gt;
-  &lt;Delta&gt;
-    &lt;Echo /&gt;
-  &lt;/Delta&gt;
-  &lt;Path path="Empty" fullPath="Empty" /&gt;
-  &lt;Path path="Sub" fullPath="Sub"&gt;
-    &lt;Foxtrott&gt;
-      &lt;Golf /&gt;
-    &lt;/Foxtrott&gt;
-    &lt;Path path="Deep" fullPath="Deep"&gt;
-      &lt;Hotel&gt;
-        &lt;India /&gt;
-      &lt;/Hotel&gt;
-    &lt;/Path&gt;
-  &lt;/Path&gt;
-&lt;/Root&gt;</value>
+  <data name="Regression1Right" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Regression1Right.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
 </root>
