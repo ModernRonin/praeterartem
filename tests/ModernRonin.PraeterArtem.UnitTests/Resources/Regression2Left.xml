@@ -224,7 +224,4 @@
       </custom_fields>
     </testcase>
   </testsuite>
-  <Alpha bravo="1">
-    <Charlie />
-  </Alpha>
 </Root>
