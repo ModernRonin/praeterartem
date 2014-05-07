@@ -1,13 +1,7 @@
 ﻿<Root path="/" fullPath="/">
-  <Path path="Empty" fullPath="Empty" />
   <Path path="Sub" fullPath="Sub">
-    <Foxtrott>
-      <Golf />
-    </Foxtrott>
     <Path path="Deep" fullPath="Deep">
-      <Hotel>
-        <India />
-      </Hotel>
+      <Hotel/>
     </Path>
   </Path>
 </Root>
