@@ -1,6 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Root path="/" fullPath="/">
-
+﻿<Root path="/" fullPath="/">
   <testsuite name="HM Basic">
     <node_order><![CDATA[1]]></node_order>
     <details><![CDATA[]]></details>
