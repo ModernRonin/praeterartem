@@ -1,8 +1,11 @@
+using System.Collections;
+using System.Collections.Generic;
 using System.Xml.Linq;
 using FluentAssertions;
 using ModernRonin.PraeterArtem.UnitTests.Properties;
 using ModernRonin.PraeterArtem.Xml;
 using Xunit;
+using Xunit.Extensions;
 
 namespace ModernRonin.PraeterArtem.UnitTests.Xml
 {
@@ -41,6 +44,13 @@ namespace ModernRonin.PraeterArtem.UnitTests.Xml
             var lhs = XElement.Parse(Resources.Regression1Left);
             var rhs = XElement.Parse(Resources.Regression1Right);
             mUnderTest.Equals(lhs, rhs).Should().BeFalse();
+        }
+        [Fact]
+        public void Regression_2()
+        {
+            var lhs = XElement.Parse(Resources.Regression2Left);
+            var rhs = XElement.Parse(Resources.Regression2Right);
+            mUnderTest.Equals(lhs, rhs).Should().BeTrue();
         }
         [Fact]
         public void SeparateCloseTagOrNotDoesNotMatter()
