@@ -1,5 +1,3 @@
-﻿<Root path="/" fullPath="/">
-  <Path path="Deep" fullPath="Deep">
-    <Hotel />
-  </Path>
-</Root>
+﻿<Path fullPath="Deep">
+  <Hotel />
+</Path>
