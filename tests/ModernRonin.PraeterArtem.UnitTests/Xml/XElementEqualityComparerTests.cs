@@ -46,13 +46,6 @@ namespace ModernRonin.PraeterArtem.UnitTests.Xml
             mUnderTest.Equals(lhs, rhs).Should().BeFalse();
         }
         [Fact]
-        public void Regression_2()
-        {
-            var lhs = XElement.Parse(Resources.Regression2Left);
-            var rhs = XElement.Parse(Resources.Regression2Right);
-            mUnderTest.Equals(lhs, rhs).Should().BeTrue();
-        }
-        [Fact]
         public void SeparateCloseTagOrNotDoesNotMatter()
         {
             var lhs = XElement.Parse("<Alpha/>");

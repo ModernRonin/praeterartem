@@ -114,56 +114,5 @@ namespace ModernRonin.PraeterArtem.UnitTests.Properties {
                 return ResourceManager.GetString("Regression1Right", resourceCulture);
             }
         }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
-        ///&lt;Root path=&quot;/&quot; fullPath=&quot;/&quot;&gt;
-        ///
-        ///  &lt;testsuite name=&quot;HM Basic&quot;&gt;
-        ///    &lt;node_order&gt;&lt;![CDATA[1]]&gt;&lt;/node_order&gt;
-        ///    &lt;details&gt;&lt;![CDATA[]]&gt;&lt;/details&gt;
-        ///
-        ///    &lt;testcase internalid=&quot;3116&quot; name=&quot;Individual milk yield&quot;&gt;
-        ///      &lt;node_order&gt;&lt;![CDATA[100]]&gt;&lt;/node_order&gt;
-        ///      &lt;externalid&gt;&lt;![CDATA[1]]&gt;&lt;/externalid&gt;
-        ///      &lt;version&gt;&lt;![CDATA[1]]&gt;&lt;/version&gt;
-        ///      &lt;summary&gt;
-        ///        &lt;![CDATA[&lt;p&gt;
-        ///  	See requirement&lt;/p&gt;
-        ///  ]]&gt;
-        ///      &lt;/summary&gt;
-        ///      &lt;preconditions&gt;
-        ///        &lt;![CDATA[&lt; [rest of string was truncated]&quot;;.
-        /// </summary>
-        internal static string Regression2Left {
-            get {
-                return ResourceManager.GetString("Regression2Left", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
-        ///&lt;Root path=&quot;/&quot; fullPath=&quot;/&quot;&gt;
-        ///  &lt;testsuite name=&quot;HM Basic&quot;&gt;
-        ///    &lt;node_order&gt;&lt;![CDATA[1]]&gt;&lt;/node_order&gt;
-        ///    &lt;details&gt;&lt;![CDATA[]]&gt;&lt;/details&gt;
-        ///    &lt;testcase internalid=&quot;3116&quot; name=&quot;Individual milk yield&quot;&gt;
-        ///      &lt;node_order&gt;&lt;![CDATA[100]]&gt;&lt;/node_order&gt;
-        ///      &lt;externalid&gt;&lt;![CDATA[1]]&gt;&lt;/externalid&gt;
-        ///      &lt;version&gt;&lt;![CDATA[1]]&gt;&lt;/version&gt;
-        ///      &lt;summary&gt;
-        ///        &lt;![CDATA[&lt;p&gt;
-        ///	See requirement&lt;/p&gt;
-        ///]]&gt;
-        ///      &lt;/summary&gt;
-        ///      &lt;preconditions&gt;
-        ///        &lt;![CDATA[&lt;p&gt;
-        ///	&lt;u&gt; [rest of string was truncated]&quot;;.
-        /// </summary>
-        internal static string Regression2Right {
-            get {
-                return ResourceManager.GetString("Regression2Right", resourceCulture);
-            }
-        }
     }
 }

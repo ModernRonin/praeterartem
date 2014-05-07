@@ -124,10 +124,4 @@
   <data name="Regression1Right" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Regression1Right.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
-  <data name="Regression2Left" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Regression2Left.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
-  </data>
-  <data name="Regression2Right" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Regression2Right.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
-  </data>
 </root>
