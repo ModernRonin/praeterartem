@@ -1,227 +1,225 @@
-﻿<Root path="/" fullPath="/">
-  <testsuite name="HM Basic">
-    <node_order><![CDATA[1]]></node_order>
-    <details><![CDATA[]]></details>
+﻿<testsuite name="HM Basic">
+  <node_order><![CDATA[1]]></node_order>
+  <details><![CDATA[]]></details>
 
-    <testcase internalid="3116" name="Individual milk yield">
-      <node_order><![CDATA[100]]></node_order>
-      <externalid><![CDATA[1]]></externalid>
-      <version><![CDATA[1]]></version>
-      <summary>
-        <![CDATA[<p>
+  <testcase internalid="3116" name="Individual milk yield">
+    <node_order><![CDATA[100]]></node_order>
+    <externalid><![CDATA[1]]></externalid>
+    <version><![CDATA[1]]></version>
+    <summary>
+      <![CDATA[<p>
   	See requirement</p>
   ]]>
-      </summary>
-      <preconditions>
-        <![CDATA[<p>
+    </summary>
+    <preconditions>
+      <![CDATA[<p>
   	<u><strong>User</strong></u> info@365farmnet.de</p>
   ]]>
-      </preconditions>
-      <execution_type><![CDATA[2]]></execution_type>
-      <importance><![CDATA[3]]></importance>
-      <steps>
-        <step>
-          <step_number><![CDATA[1]]></step_number>
-          <actions>
-            <![CDATA[<p>
+    </preconditions>
+    <execution_type><![CDATA[2]]></execution_type>
+    <importance><![CDATA[3]]></importance>
+    <steps>
+      <step>
+        <step_number><![CDATA[1]]></step_number>
+        <actions>
+          <![CDATA[<p>
   	Module Navigate: &quot;core&quot; &quot;cattle&quot;</p>
   ]]>
-          </actions>
-          <expectedresults>
-            <![CDATA[<p>
+        </actions>
+        <expectedresults>
+          <![CDATA[<p>
   	Assert text &quot;Rinder&quot;</p>
   ]]>
-          </expectedresults>
-          <execution_type><![CDATA[2]]></execution_type>
-        </step>
+        </expectedresults>
+        <execution_type><![CDATA[2]]></execution_type>
+      </step>
 
-        <step>
-          <step_number><![CDATA[2]]></step_number>
-          <actions>
-            <![CDATA[<p>
+      <step>
+        <step_number><![CDATA[2]]></step_number>
+        <actions>
+          <![CDATA[<p>
   	Click &quot;//div[contains(text(), &#39;Elsa&#39;)]&quot;</p>
   ]]>
-          </actions>
-          <expectedresults>
-            <![CDATA[<p>
+        </actions>
+        <expectedresults>
+          <![CDATA[<p>
   	Assert text &quot;1500898139&quot;</p>
   ]]>
-          </expectedresults>
-          <execution_type><![CDATA[2]]></execution_type>
-        </step>
+        </expectedresults>
+        <execution_type><![CDATA[2]]></execution_type>
+      </step>
 
-        <step>
-          <step_number><![CDATA[3]]></step_number>
-          <actions>
-            <![CDATA[<p>
+      <step>
+        <step_number><![CDATA[3]]></step_number>
+        <actions>
+          <![CDATA[<p>
   	Click &quot;//button[contains(text(), &#39;X&#39;)]&quot;</p>
   <p>
   	&nbsp;</p>
   ]]>
-          </actions>
-          <expectedresults><![CDATA[]]></expectedresults>
-          <execution_type><![CDATA[2]]></execution_type>
-        </step>
-      </steps>
-      <custom_fields>
-        <custom_field>
-          <name><![CDATA[Classname]]></name>
-          <value><![CDATA[testclient.testcase.hmbasic.IndividualMilkYieldTest]]></value>
-        </custom_field>
-      </custom_fields>
-      <requirements>
-        <requirement>
-          <req_spec_title><![CDATA[HM Basic]]></req_spec_title>
-          <doc_id><![CDATA[400]]></doc_id>
-          <title><![CDATA[yield of individual animal against group performance (table and graphics)]]></title>
-        </requirement>
-      </requirements>
-    </testcase>
+        </actions>
+        <expectedresults><![CDATA[]]></expectedresults>
+        <execution_type><![CDATA[2]]></execution_type>
+      </step>
+    </steps>
+    <custom_fields>
+      <custom_field>
+        <name><![CDATA[Classname]]></name>
+        <value><![CDATA[testclient.testcase.hmbasic.IndividualMilkYieldTest]]></value>
+      </custom_field>
+    </custom_fields>
+    <requirements>
+      <requirement>
+        <req_spec_title><![CDATA[HM Basic]]></req_spec_title>
+        <doc_id><![CDATA[400]]></doc_id>
+        <title><![CDATA[yield of individual animal against group performance (table and graphics)]]></title>
+      </requirement>
+    </requirements>
+  </testcase>
 
-    <testcase internalid="3133" name="Enter cow data">
-      <node_order><![CDATA[101]]></node_order>
-      <externalid><![CDATA[3]]></externalid>
-      <version><![CDATA[1]]></version>
-      <summary>
-        <![CDATA[<p>
+  <testcase internalid="3133" name="Enter cow data">
+    <node_order><![CDATA[101]]></node_order>
+    <externalid><![CDATA[3]]></externalid>
+    <version><![CDATA[1]]></version>
+    <summary>
+      <![CDATA[<p>
   	See Requirement.</p>
   ]]>
-      </summary>
-      <preconditions>
-        <![CDATA[<p>
+    </summary>
+    <preconditions>
+      <![CDATA[<p>
   	User max.mustermann4@365farmnet.de</p>
   ]]>
-      </preconditions>
-      <execution_type><![CDATA[2]]></execution_type>
-      <importance><![CDATA[3]]></importance>
-      <steps>
-        <step>
-          <step_number><![CDATA[1]]></step_number>
-          <actions>
-            <![CDATA[<p>
+    </preconditions>
+    <execution_type><![CDATA[2]]></execution_type>
+    <importance><![CDATA[3]]></importance>
+    <steps>
+      <step>
+        <step_number><![CDATA[1]]></step_number>
+        <actions>
+          <![CDATA[<p>
   	Module Navigate: &quot;Startseite&quot; &quot;Kuh&quot; &quot;Hinzuf&uuml;gen&quot;</p>
   ]]>
-          </actions>
-          <expectedresults>
-            <![CDATA[<p>
+        </actions>
+        <expectedresults>
+          <![CDATA[<p>
   	Assert element &quot;dataView&quot;</p>
   ]]>
-          </expectedresults>
-          <execution_type><![CDATA[2]]></execution_type>
-        </step>
+        </expectedresults>
+        <execution_type><![CDATA[2]]></execution_type>
+      </step>
 
-        <step>
-          <step_number><![CDATA[2]]></step_number>
-          <actions>
-            <![CDATA[<p>
+      <step>
+        <step_number><![CDATA[2]]></step_number>
+        <actions>
+          <![CDATA[<p>
   	Module CattleDlg: &quot;Create&quot; &quot;Elsa&quot; &quot;115&quot;</p>
   ]]>
-          </actions>
-          <expectedresults>
-            <![CDATA[<p>
+        </actions>
+        <expectedresults>
+          <![CDATA[<p>
   	Assert text &quot;Elsa&quot;</p>
   ]]>
-          </expectedresults>
-          <execution_type><![CDATA[2]]></execution_type>
-        </step>
+        </expectedresults>
+        <execution_type><![CDATA[2]]></execution_type>
+      </step>
 
-        <step>
-          <step_number><![CDATA[3]]></step_number>
-          <actions>
-            <![CDATA[<p>
+      <step>
+        <step_number><![CDATA[3]]></step_number>
+        <actions>
+          <![CDATA[<p>
   	Click &quot;116&quot;</p>
   ]]>
-          </actions>
-          <expectedresults><![CDATA[]]></expectedresults>
-          <execution_type><![CDATA[2]]></execution_type>
-        </step>
+        </actions>
+        <expectedresults><![CDATA[]]></expectedresults>
+        <execution_type><![CDATA[2]]></execution_type>
+      </step>
 
-        <step>
-          <step_number><![CDATA[4]]></step_number>
-          <actions>
-            <![CDATA[<p>
+      <step>
+        <step_number><![CDATA[4]]></step_number>
+        <actions>
+          <![CDATA[<p>
   	Module CattleDlg: &quot;Read&quot; &quot;Elsa&quot; &quot;115&quot;</p>
   ]]>
-          </actions>
-          <expectedresults><![CDATA[]]></expectedresults>
-          <execution_type><![CDATA[2]]></execution_type>
-        </step>
-      </steps>
-      <custom_fields>
-        <custom_field>
-          <name><![CDATA[Classname]]></name>
-          <value><![CDATA[testclient.testcase.hmbasic.EnterCowDataTest]]></value>
-        </custom_field>
-      </custom_fields>
-      <requirements>
-        <requirement>
-          <req_spec_title><![CDATA[HM Basic]]></req_spec_title>
-          <doc_id><![CDATA[020]]></doc_id>
-          <title><![CDATA[Enter new cow]]></title>
-        </requirement>
-      </requirements>
-    </testcase>
+        </actions>
+        <expectedresults><![CDATA[]]></expectedresults>
+        <execution_type><![CDATA[2]]></execution_type>
+      </step>
+    </steps>
+    <custom_fields>
+      <custom_field>
+        <name><![CDATA[Classname]]></name>
+        <value><![CDATA[testclient.testcase.hmbasic.EnterCowDataTest]]></value>
+      </custom_field>
+    </custom_fields>
+    <requirements>
+      <requirement>
+        <req_spec_title><![CDATA[HM Basic]]></req_spec_title>
+        <doc_id><![CDATA[020]]></doc_id>
+        <title><![CDATA[Enter new cow]]></title>
+      </requirement>
+    </requirements>
+  </testcase>
 
-    <testcase internalid="3387" name="Cattle">
-      <node_order><![CDATA[102]]></node_order>
-      <externalid><![CDATA[5]]></externalid>
-      <version><![CDATA[1]]></version>
-      <summary>
-        <![CDATA[<p>
+  <testcase internalid="3387" name="Cattle">
+    <node_order><![CDATA[102]]></node_order>
+    <externalid><![CDATA[5]]></externalid>
+    <version><![CDATA[1]]></version>
+    <summary>
+      <![CDATA[<p>
   	Demo Testfall f&uuml;r Entity cattle.</p>
   ]]>
-      </summary>
-      <preconditions><![CDATA[]]></preconditions>
-      <execution_type><![CDATA[2]]></execution_type>
-      <importance><![CDATA[2]]></importance>
-      <steps>
-        <step>
-          <step_number><![CDATA[1]]></step_number>
-          <actions>
-            <![CDATA[<p>
+    </summary>
+    <preconditions><![CDATA[]]></preconditions>
+    <execution_type><![CDATA[2]]></execution_type>
+    <importance><![CDATA[2]]></importance>
+    <steps>
+      <step>
+        <step_number><![CDATA[1]]></step_number>
+        <actions>
+          <![CDATA[<p>
   	Module Navigate: &quot;core&quot; &quot;cattleGea&quot;</p>
   ]]>
-          </actions>
-          <expectedresults>
-            <![CDATA[<p>
+        </actions>
+        <expectedresults>
+          <![CDATA[<p>
   	Assert text &quot;Max Mustermann Hof&quot;</p>
   ]]>
-          </expectedresults>
-          <execution_type><![CDATA[2]]></execution_type>
-        </step>
+        </expectedresults>
+        <execution_type><![CDATA[2]]></execution_type>
+      </step>
 
-        <step>
-          <step_number><![CDATA[2]]></step_number>
-          <actions>
-            <![CDATA[<p>
+      <step>
+        <step_number><![CDATA[2]]></step_number>
+        <actions>
+          <![CDATA[<p>
   	Click &quot;//span[contains(text(), &#39;Erstellen&#39;)]&quot; &quot;Stammdaten&quot;</p>
   ]]>
-          </actions>
-          <expectedresults><![CDATA[]]></expectedresults>
-          <execution_type><![CDATA[2]]></execution_type>
-        </step>
+        </actions>
+        <expectedresults><![CDATA[]]></expectedresults>
+        <execution_type><![CDATA[2]]></execution_type>
+      </step>
 
-        <step>
-          <step_number><![CDATA[3]]></step_number>
-          <actions>
-            <![CDATA[<p>
+      <step>
+        <step_number><![CDATA[3]]></step_number>
+        <actions>
+          <![CDATA[<p>
   	Module dialog.CattleDlgGen: &quot;Create&quot; &quot;Selenium&quot; &quot;1234567890&quot; &quot;GT&quot; &quot;&quot; &quot;4352&quot; &quot;6654&quot; &quot;&quot; &quot;&quot; &quot;&quot;</p>
   ]]>
-          </actions>
-          <expectedresults>
-            <![CDATA[<p>
+        </actions>
+        <expectedresults>
+          <![CDATA[<p>
   	Assert text &quot;Stammdaten&quot;</p>
   ]]>
-          </expectedresults>
-          <execution_type><![CDATA[2]]></execution_type>
-        </step>
-      </steps>
-      <custom_fields>
-        <custom_field>
-          <name><![CDATA[Classname]]></name>
-          <value><![CDATA[]]></value>
-        </custom_field>
-      </custom_fields>
-    </testcase>
-  </testsuite>
-</Root>
+        </expectedresults>
+        <execution_type><![CDATA[2]]></execution_type>
+      </step>
+    </steps>
+    <custom_fields>
+      <custom_field>
+        <name><![CDATA[Classname]]></name>
+        <value><![CDATA[]]></value>
+      </custom_field>
+    </custom_fields>
+  </testcase>
+</testsuite>
