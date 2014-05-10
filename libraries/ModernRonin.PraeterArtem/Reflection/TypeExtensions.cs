@@ -57,7 +57,8 @@ namespace ModernRonin.PraeterArtem.Reflection
         /// <summary>
         ///     Gets a pretty name for a type even if it is generic. For example, for Dictionary{string,object} it will return
         ///     exactly that instead of
-        ///     "Dictionary'1[System.String...] as type.Name would do.
+        ///     "Dictionary'1[System.String...] as type.Name would do. Also uses <see cref="CSharpName" />, so CLR types are
+        ///     translated to their C# counterparts where possible.
         /// </summary>
         public static string PrettyName(this Type type)
         {
@@ -67,7 +68,7 @@ namespace ModernRonin.PraeterArtem.Reflection
                         type.GetGenericArguments()
                             .Select(PrettyName)
                             .ToArray()))
-                : type.Name;
+                : type.CSharpName();
         }
         /// <summary>
         ///     Returns the C# type name instead of the CLR type name for those types which have a special name in C#, for example
