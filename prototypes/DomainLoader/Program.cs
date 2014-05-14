@@ -27,24 +27,21 @@ namespace DomainLoader
             Log("My own AppDomain: {0}", AppDomain.CurrentDomain.Id);
             ListLoadedAssembliesInCurrentDomain();
             Log("Creating AppDomain");
-
             var loadedDomain = AppDomain.CreateDomain("Dynamically Loaded");
-
             Log("Loaded Domain: {0}", loadedDomain.Id);
             ListLoadedDomains();
-            Log("Creating TypeLoader in Loaded Domain");
 
-            var typeLoader = TypeLoader.Create(loadedDomain);
-            Log("TypeLoader's AppDomain: {0}", typeLoader.AppDomainIdentifier);
             Log(
-                "Using TypeLoader to get an instance of concrete type as an interface");
+                "Using Extension Method to get an instance of concrete type as an interface in the Loaded Domain");
             var remoteType =
-                typeLoader.Load<IRemoteType>(
-                                             "../../../SomeLibrary/bin/debug/SomeLibrary.dll",
+                loadedDomain.CreateTypeInDomain<IRemoteType>(
+                                                             "../../../SomeLibrary/bin/debug/SomeLibrary.dll",
                     "SomeLibrary.SomeImplementation");
             Log("RemoteType's AppDomain: {0}", remoteType.AppDomainIdentifier);
             ListLoadedAssembliesInCurrentDomain();
+
             remoteType.Execute(ListLoadedAssembliesInCurrentDomain);
+            
             Log("Unloading Loaded Domain");
             AppDomain.Unload(loadedDomain);
             ListLoadedDomains();

@@ -12,10 +12,6 @@ namespace SharedInterfaces
         {
             get { return typeof (TypeLoader).Assembly.GetName().Name; }
         }
-        public int AppDomainIdentifier
-        {
-            get { return AppDomain.CurrentDomain.Id; }
-        }
         public T Load<T>(string assemblyFilePath, string concreteTypeName)
         {
             var result =
