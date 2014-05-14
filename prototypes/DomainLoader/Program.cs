@@ -13,7 +13,7 @@ namespace DomainLoader
             "Microsoft",
             "System",
             "mscorlib",
-            "vshost325"
+            "vshost32"
         };
         static string TypeLoaderAssemblyName
         {
@@ -41,21 +41,12 @@ namespace DomainLoader
                                              "../../../SomeLibrary/bin/debug/SomeLibrary.dll",
                     "SomeLibrary.AppDomainBoundaryCrosser");
             Log("RemoteType's AppDomain: {0}", remoteType.AppDomainIdentifier);
-            remoteType.Execute(
-                               () =>
-                                   Log(
-                                       string.Format(
-                                                     "Executing lambda in AppDomain #{0}",
-                                           AppDomain.CurrentDomain.Id)));
             ListLoadedAssembliesInCurrentDomain();
-            //ListLoadedAssembliesIn(loadedDomain);
+            remoteType.Execute(ListLoadedAssembliesInCurrentDomain);
         }
         void ListLoadedAssembliesInCurrentDomain()
         {
-            ListLoadedAssembliesIn(AppDomain.CurrentDomain);
-        }
-        void ListLoadedAssembliesIn(AppDomain domain)
-        {
+            AppDomain domain = AppDomain.CurrentDomain;
             Log("AppDomain #{0}'s loaded assemblies:", domain.Id);
             domain.GetAssemblies()
                   .Select(a => a.GetName().Name)
