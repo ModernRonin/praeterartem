@@ -30,6 +30,8 @@ namespace ModernRonin.PraeterArtem.UnitTests._MetaAssertions_
         {
             get
             {
+                if (!mTargetType.IsVisible)
+                    return false;
                 return !mTargetType
                     .GetCustomAttributes(false)
                     .Any(x => AttributesThatMeanNoUnitTestsNeeded.Contains(x.GetType()));
