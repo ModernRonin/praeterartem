@@ -7,6 +7,13 @@ namespace DomainLoader
 {
     class Program
     {
+        static readonly string[] sIgnorableAssemblyNamePatterns = new[]
+                                                                  {
+                                                                      "Microsoft",
+                                                                      "System",
+                                                                      "mscorlib",
+                                                                      "vshost325"
+                                                                  };
         static string TypeLoaderAssemblyName
         {
             get { return "SharedInterfaces"; }
@@ -42,10 +49,16 @@ namespace DomainLoader
         {
             Log("AppDomain #{0}'s loaded assemblies:", domain.Id);
             domain.GetAssemblies()
-                     .OrderBy(a => a.GetName().Name)
-                     .Select(a => a.GetName().Name)
+                .Select(a => a.GetName().Name)
+                .Where(n => !IsFilteredNamespace(n))
+                     .OrderBy(Functions.Identity<string>())
+                     
                      .UseIn(n => Log("\t{0}", n));
             LogEndOfList();
+        }
+        static bool IsFilteredNamespace(string name)
+        {
+            return sIgnorableAssemblyNamePatterns.Any(name.StartsWith);
         }
         void LogEndOfList()
         {
