@@ -18,10 +18,6 @@ namespace DomainLoader
             "mscorlib",
             "vshost32"
         };
-        static string TypeLoaderAssemblyName
-        {
-            get { return typeof (TypeLoader).Assembly.GetName().Name; }
-        }
         void Run()
         {
             Log("Starting");
