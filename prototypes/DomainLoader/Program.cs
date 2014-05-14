@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using ModernRonin.PraeterArtem.Functional;
+using mscoree;
 using SharedInterfaces;
 
 namespace DomainLoader
@@ -27,7 +29,7 @@ namespace DomainLoader
             Log("Creating AppDomain");
             var loadedDomain = AppDomain.CreateDomain("Dynamically Loaded");
             Log("Loaded Domain: {0}", loadedDomain.Id);
-            // TODO: list loaded domains
+            ListLoadedDomains();
             Log("Creating TypeLoader in Loaded Domain");
             var typeLoader =
                 (TypeLoader)
@@ -45,6 +47,34 @@ namespace DomainLoader
             remoteType.Execute(ListLoadedAssembliesInCurrentDomain);
             Log("Unloading Loaded Domain");
             AppDomain.Unload(loadedDomain);
+            ListLoadedDomains();
+        }
+        void ListLoadedDomains()
+        {
+            Log("Domains loaded:");
+            var appDomains = GetLoadedAppDomains();
+
+            appDomains.Select(d => d.Id).UseIn(id => Log("\t#{0}", id));
+            LogEndOfList();
+        }
+        static IEnumerable<AppDomain> GetLoadedAppDomains()
+        {
+            var appDomains = new List<AppDomain>();
+            IntPtr handle;
+            var runtimeHost = new CorRuntimeHost();
+            runtimeHost.EnumDomains(out handle);
+            var doContinue = true;
+            while (doContinue)
+            {
+                object domain;
+                runtimeHost.NextDomain(handle, out domain);
+                if (domain == null)
+                    doContinue = false;
+                else
+                    appDomains.Add((AppDomain) domain);
+            }
+            runtimeHost.CloseEnum(handle);
+            return appDomains;
         }
         void ListLoadedAssembliesInCurrentDomain()
         {
