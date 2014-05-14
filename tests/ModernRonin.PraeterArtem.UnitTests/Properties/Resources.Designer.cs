@@ -61,6 +61,20 @@ namespace ModernRonin.PraeterArtem.UnitTests.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to namespace GeneratedAssembly
+        ///{
+        ///	public class Implementation : IRemoteType
+        ///	{
+        ///	}
+        ///}.
+        /// </summary>
+        internal static string CodeForGeneratedAssembly {
+            get {
+                return ResourceManager.GetString("CodeForGeneratedAssembly", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to &lt;Root path=&quot;/&quot; fullPath=&quot;/&quot;&gt;
         ///  &lt;Alpha bravo=&quot;1&quot;&gt;
         ///    &lt;Charlie /&gt;

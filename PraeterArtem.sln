@@ -23,6 +23,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DomainLoader", "prototypes\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharedInterfaces", "prototypes\SharedInterfaces\SharedInterfaces.csproj", "{015C5C2E-4629-4F1A-ABF0-AED290F77D6D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharedInterfacesForTestingRemoting", "tests\SharedInterfacesForTestingRemoting\SharedInterfacesForTestingRemoting.csproj", "{92C8CC94-5E50-459B-9670-7A669C49D5ED}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -49,12 +51,17 @@ Global
 		{015C5C2E-4629-4F1A-ABF0-AED290F77D6D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{015C5C2E-4629-4F1A-ABF0-AED290F77D6D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{015C5C2E-4629-4F1A-ABF0-AED290F77D6D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{92C8CC94-5E50-459B-9670-7A669C49D5ED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{92C8CC94-5E50-459B-9670-7A669C49D5ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{92C8CC94-5E50-459B-9670-7A669C49D5ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{92C8CC94-5E50-459B-9670-7A669C49D5ED}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{571863C8-3152-4342-A14C-31E6F40308D0} = {7B54C0DD-0CBC-41C0-86EF-E8B6B298E026}
+		{92C8CC94-5E50-459B-9670-7A669C49D5ED} = {7B54C0DD-0CBC-41C0-86EF-E8B6B298E026}
 		{FBDCE26C-D240-4969-9517-1D2656411967} = {35A98193-B180-455F-BD4C-A532F4B305FE}
 		{41D0AE59-53F1-4C3C-9F84-9A2226B41D91} = {35A98193-B180-455F-BD4C-A532F4B305FE}
 		{015C5C2E-4629-4F1A-ABF0-AED290F77D6D} = {35A98193-B180-455F-BD4C-A532F4B305FE}

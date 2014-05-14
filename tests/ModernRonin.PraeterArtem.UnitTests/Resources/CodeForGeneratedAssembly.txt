@@ -1,0 +1,16 @@
+using System;
+using SharedInterfacesForTestingRemoting;
+
+namespace GeneratedAssembly
+{
+	public class Implementation : MarshalByRefObject, IRemoteType
+	{
+		public int GetApplicationDomainIdentifier 
+		{ 
+            get
+            {
+                return AppDomain.CurrentDomain.Id; 
+            }
+		}
+	}
+}

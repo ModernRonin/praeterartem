@@ -82,6 +82,10 @@
       <Project>{1683f54e-6f1e-4387-a544-5b6510e40b4b}</Project>
       <Name>ModernRonin.PraeterArtem</Name>
     </ProjectReference>
+    <ProjectReference Include="..\SharedInterfacesForTestingRemoting\SharedInterfacesForTestingRemoting.csproj">
+      <Project>{92c8cc94-5e50-459b-9670-7a669c49d5ed}</Project>
+      <Name>SharedInterfacesForTestingRemoting</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -93,6 +97,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\CodeForGeneratedAssembly.txt" />
     <Content Include="Resources\Regression1Left.xml">
       <SubType>Designer</SubType>
     </Content>
