@@ -36,6 +36,7 @@
   <ItemGroup>
     <Compile Include="AnAppDomainIdentifiable.cs" />
     <Compile Include="IAppDomainIdentifiable.cs" />
+    <Compile Include="IRemoteType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TypeLoader.cs" />
   </ItemGroup>

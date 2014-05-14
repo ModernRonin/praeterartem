@@ -38,6 +38,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\libraries\ModernRonin.PraeterArtem\ModernRonin.PraeterArtem.csproj">
+      <Project>{1683F54E-6F1E-4387-A544-5B6510E40B4B}</Project>
+      <Name>ModernRonin.PraeterArtem</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SharedInterfaces\SharedInterfaces.csproj">
       <Project>{015C5C2E-4629-4F1A-ABF0-AED290F77D6D}</Project>
       <Name>SharedInterfaces</Name>

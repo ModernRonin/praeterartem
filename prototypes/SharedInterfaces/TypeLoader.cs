@@ -4,13 +4,24 @@ namespace SharedInterfaces
 {
     public class TypeLoader : AnAppDomainIdentifiable
     {
-        public IAppDomainIdentifiable Load(string assemblyName,
-                                           string concreteTypeName)
+        public T Load<T>(string assemblyName, string concreteTypeName)
         {
-            return
-                (IAppDomainIdentifiable)
-                    Activator.CreateInstanceFrom(assemblyName,
-                        concreteTypeName).Unwrap();
+            var result =
+                Activator.CreateInstanceFrom(assemblyName, concreteTypeName)
+                         .Unwrap();
+            return (T) result;
+        }
+    }
+
+    public class AppDomainExecutor : MarshalByRefObject
+    {
+        void DoExecute(Action action)
+        {
+            action();
+        }
+        void DoExecute<T>(T parameter, Action<T> action)
+        {
+            action(parameter);
         }
     }
 }
