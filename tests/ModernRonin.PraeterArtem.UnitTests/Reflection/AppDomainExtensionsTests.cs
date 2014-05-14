@@ -3,6 +3,7 @@ using System.CodeDom.Compiler;
 using System.ComponentModel;
 using System.IO;
 using System.Linq;
+using FluentAssertions;
 using ModernRonin.PraeterArtem.Functional;
 using ModernRonin.PraeterArtem.Reflection;
 using ModernRonin.PraeterArtem.UnitTests.Properties;
@@ -60,6 +61,21 @@ namespace ModernRonin.PraeterArtem.UnitTests.Reflection
                 results.Errors.Cast<CompilerError>().UseIn(Console.WriteLine);
                 Assert.True(false);
             }
+        }
+        [Fact(
+            Skip =
+                "Weird things seem to happen when doing this inside a test runner - while from a console program it works just fine. For the time being, I give up on writing unit-tests for this."
+            )]
+        public void Execute_Executes_Action_In_Other_AppDomain()
+        {
+            var secondaryDomain = AppDomain.CreateDomain("Bravo");
+            AppDomain.CurrentDomain.FriendlyName.Should().NotBe("Bravo");
+            secondaryDomain.FriendlyName.Should().Be("Bravo");
+
+            secondaryDomain.Execute(
+                                    () =>
+                                        AppDomain.CurrentDomain.FriendlyName
+                                                 .Should().Be("Bravo"));
         }
     }
 }

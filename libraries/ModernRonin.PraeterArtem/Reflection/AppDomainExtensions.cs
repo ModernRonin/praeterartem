@@ -88,5 +88,9 @@ namespace ModernRonin.PraeterArtem.Reflection
             return TypeLoader.CreateTypeInDomain<T>(domain, assemblyFilePath,
                 concreteTypeName);
         }
+        public static void Execute(this AppDomain domain, Action action)
+        {
+            RemoteDomainExecutor.ExecuteIn(domain, action);
+        }
     }
 }

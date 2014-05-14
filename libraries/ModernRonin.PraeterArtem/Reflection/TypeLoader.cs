@@ -3,7 +3,7 @@ using System.Collections.Concurrent;
 
 namespace ModernRonin.PraeterArtem.Reflection
 {
-    internal sealed class TypeLoader : MarshalByRefObject
+    sealed class TypeLoader : MarshalByRefObject
     {
         static readonly ConcurrentDictionary<AppDomain, TypeLoader>
             sAppDomainsToInstances =
@@ -12,7 +12,7 @@ namespace ModernRonin.PraeterArtem.Reflection
         {
             get { return typeof (TypeLoader).Assembly.GetName().Name; }
         }
-        public T Load<T>(string assemblyFilePath, string concreteTypeName)
+        T Load<T>(string assemblyFilePath, string concreteTypeName)
         {
             var result =
                 Activator.CreateInstanceFrom(assemblyFilePath,

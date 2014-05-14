@@ -39,6 +39,9 @@ namespace DomainLoader
 
             remoteType.Execute(ListLoadedAssembliesInCurrentDomain);
             
+            Log("Executing lambda in Loaded Domain");
+            loadedDomain.Execute(() => Log("Lambda's AppDomain: {0}", AppDomain.CurrentDomain.Id));
+
             Log("Unloading Loaded Domain");
             AppDomain.Unload(loadedDomain);
             ListLoadedDomains();
