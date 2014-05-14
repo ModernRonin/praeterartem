@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Concurrent;
 
-namespace SharedInterfaces
+namespace ModernRonin.PraeterArtem.Reflection
 {
     public class TypeLoader : MarshalByRefObject
     {
@@ -48,17 +48,6 @@ namespace SharedInterfaces
         {
             var typeLoader = Create(domain);
             return typeLoader.Load<T>(assemblyFilePath, concreteTypeName);
-        }
-    }
-
-    public static class AppDomainExtensions
-    {
-        public static T CreateTypeInDomain<T>(this AppDomain domain,
-                                              string assemblyFilePath,
-                                              string concreteTypeName)
-        {
-            return TypeLoader.CreateTypeInDomain<T>(domain, assemblyFilePath,
-                concreteTypeName);
         }
     }
 }
