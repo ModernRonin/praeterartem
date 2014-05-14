@@ -16,11 +16,11 @@ namespace SharedInterfaces
         {
             get { return AppDomain.CurrentDomain.Id; }
         }
-        public T Load<T>(string assemblyName, string concreteTypeName)
+        public T Load<T>(string assemblyFilePath, string concreteTypeName)
         {
             var result =
-                Activator.CreateInstanceFrom(assemblyName, concreteTypeName)
-                         .Unwrap();
+                Activator.CreateInstanceFrom(assemblyFilePath,
+                    concreteTypeName).Unwrap();
             return (T) result;
         }
         public static TypeLoader Create(AppDomain domain)
@@ -45,6 +45,24 @@ namespace SharedInterfaces
             domain.DomainUnload -= OnDomainUnloading;
             TypeLoader ignore;
             sAppDomainsToInstances.TryRemove(domain, out ignore);
+        }
+        public static T CreateTypeInDomain<T>(AppDomain domain,
+                                              string assemblyFilePath,
+                                              string concreteTypeName)
+        {
+            var typeLoader = Create(domain);
+            return typeLoader.Load<T>(assemblyFilePath, concreteTypeName);
+        }
+    }
+
+    public static class AppDomainExtensions
+    {
+        public static T CreateTypeInDomain<T>(this AppDomain domain,
+                                              string assemblyFilePath,
+                                              string concreteTypeName)
+        {
+            return TypeLoader.CreateTypeInDomain<T>(domain, assemblyFilePath,
+                concreteTypeName);
         }
     }
 }
