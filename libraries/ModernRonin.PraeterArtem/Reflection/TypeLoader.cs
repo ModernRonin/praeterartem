@@ -3,7 +3,7 @@ using System.Collections.Concurrent;
 
 namespace ModernRonin.PraeterArtem.Reflection
 {
-    public class TypeLoader : MarshalByRefObject
+    internal class TypeLoader : MarshalByRefObject
     {
         static readonly ConcurrentDictionary<AppDomain, TypeLoader>
             sAppDomainsToInstances =
