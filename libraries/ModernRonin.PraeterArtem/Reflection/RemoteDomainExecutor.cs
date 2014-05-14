@@ -14,9 +14,8 @@ namespace ModernRonin.PraeterArtem.Reflection
         public static void ExecuteIn(AppDomain domain, Action action)
         {
             var executor =
-                (RemoteDomainExecutor)
-                    domain.CreateInstance(MyAssemblyName,
-                        typeof (RemoteDomainExecutor).FullName).Unwrap();
+                TypeInAppDomainCreator.CreateTypeIn<RemoteDomainExecutor>(
+                                                                          domain);
             executor.Execute(action);
         }
         void Execute(Action action)

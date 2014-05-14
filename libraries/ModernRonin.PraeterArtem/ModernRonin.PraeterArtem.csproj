@@ -94,6 +94,7 @@
     <Compile Include="Reflection\AppDomainExtensions.cs" />
     <Compile Include="Reflection\RemoteDomainExecutor.cs" />
     <Compile Include="Reflection\TypeExtensions.cs" />
+    <Compile Include="Reflection\TypeInAppDomainCreator.cs" />
     <Compile Include="Reflection\TypeLoader.cs" />
     <Compile Include="Xml\XElementEqualityComparer.cs" />
   </ItemGroup>
