@@ -43,10 +43,12 @@ namespace DomainLoader
             Log("RemoteType's AppDomain: {0}", remoteType.AppDomainIdentifier);
             ListLoadedAssembliesInCurrentDomain();
             remoteType.Execute(ListLoadedAssembliesInCurrentDomain);
+            Log("Unloading Loaded Domain");
+            AppDomain.Unload(loadedDomain);
         }
         void ListLoadedAssembliesInCurrentDomain()
         {
-            AppDomain domain = AppDomain.CurrentDomain;
+            var domain = AppDomain.CurrentDomain;
             Log("AppDomain #{0}'s loaded assemblies:", domain.Id);
             domain.GetAssemblies()
                   .Select(a => a.GetName().Name)
