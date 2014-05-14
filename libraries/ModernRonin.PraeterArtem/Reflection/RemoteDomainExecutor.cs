@@ -1,16 +1,11 @@
 using System;
+using JetBrains.Annotations;
 
 namespace ModernRonin.PraeterArtem.Reflection
 {
+    [UsedImplicitly]
     sealed class RemoteDomainExecutor : MarshalByRefObject
     {
-        static string MyAssemblyName
-        {
-            get
-            {
-                return typeof (RemoteDomainExecutor).Assembly.GetName().Name;
-            }
-        }
         public static void ExecuteIn(AppDomain domain, Action action)
         {
             var executor =
@@ -18,6 +13,9 @@ namespace ModernRonin.PraeterArtem.Reflection
                                                                           domain);
             executor.Execute(action);
         }
+        /// <summary>
+        ///     This MUST be an instance method, otherwise it will be called in the default AppDomain.
+        /// </summary>
         void Execute(Action action)
         {
             action();

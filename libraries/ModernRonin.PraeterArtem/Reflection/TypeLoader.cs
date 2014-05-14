@@ -1,17 +1,18 @@
 using System;
 using System.Collections.Concurrent;
+using JetBrains.Annotations;
 
 namespace ModernRonin.PraeterArtem.Reflection
 {
+    [UsedImplicitly]
     sealed class TypeLoader : MarshalByRefObject
     {
         static readonly ConcurrentDictionary<AppDomain, TypeLoader>
             sAppDomainsToInstances =
                 new ConcurrentDictionary<AppDomain, TypeLoader>();
-        static string TypeLoaderAssemblyName
-        {
-            get { return typeof (TypeLoader).Assembly.GetName().Name; }
-        }
+        /// <summary>
+        ///     This MUST be an instance method, otherwise it will be called in the default AppDomain.
+        /// </summary>
         T Load<T>(string assemblyFilePath, string concreteTypeName)
         {
             var result =
@@ -19,16 +20,14 @@ namespace ModernRonin.PraeterArtem.Reflection
                     concreteTypeName).Unwrap();
             return (T) result;
         }
-        public static TypeLoader Create(AppDomain domain)
+        static TypeLoader Create(AppDomain domain)
         {
             return sAppDomainsToInstances.GetOrAdd(domain, DoCreate);
         }
         static TypeLoader DoCreate(AppDomain domain)
         {
             var result =
-                (TypeLoader)
-                    domain.CreateInstance(TypeLoaderAssemblyName,
-                        typeof (TypeLoader).FullName).Unwrap();
+                TypeInAppDomainCreator.CreateTypeIn<TypeLoader>(domain);
             domain.DomainUnload += OnDomainUnloading;
             return result;
         }
