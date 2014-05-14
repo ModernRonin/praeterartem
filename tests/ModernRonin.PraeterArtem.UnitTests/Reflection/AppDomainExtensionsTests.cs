@@ -7,7 +7,6 @@ namespace ModernRonin.PraeterArtem.UnitTests.Reflection
         [Fact]
         public void CreateTypeInDomain()
         {
-            
         }
     }
 }
