@@ -34,11 +34,6 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Program.cs" />
@@ -48,6 +43,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\libraries\ModernRonin.PraeterArtem\ModernRonin.PraeterArtem.csproj">
+      <Project>{1683f54e-6f1e-4387-a544-5b6510e40b4b}</Project>
+      <Name>ModernRonin.PraeterArtem</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SharedInterfaces\SharedInterfaces.csproj">
       <Project>{015C5C2E-4629-4F1A-ABF0-AED290F77D6D}</Project>
       <Name>SharedInterfaces</Name>
