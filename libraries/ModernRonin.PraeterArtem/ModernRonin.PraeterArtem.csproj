@@ -96,6 +96,7 @@
     <Compile Include="Reflection\TypeExtensions.cs" />
     <Compile Include="Reflection\TypeInAppDomainCreator.cs" />
     <Compile Include="Reflection\TypeLoader.cs" />
+    <Compile Include="Reflection\Wrapper.cs" />
     <Compile Include="Xml\XElementEqualityComparer.cs" />
   </ItemGroup>
   <ItemGroup />
