@@ -8,6 +8,17 @@ using SharedInterfaces;
 
 namespace DomainLoader
 {
+    class SomeType : MarshalByRefObject
+    {
+        public SomeType(string name)
+        {
+            Console.WriteLine("{0} is being constructed in AppDomain #{1}",
+                typeof (SomeType).PrettyName(), AppDomain.CurrentDomain.Id);
+            Name = name;
+        }
+        public string Name { get; private set; }
+    }
+
     [Serializable]
     class Program
     {
@@ -38,9 +49,17 @@ namespace DomainLoader
             ListLoadedAssembliesInCurrentDomain();
 
             remoteType.Execute(ListLoadedAssembliesInCurrentDomain);
-            
+
             Log("Executing lambda in Loaded Domain");
-            loadedDomain.Execute(() => Log("Lambda's AppDomain: {0}", AppDomain.CurrentDomain.Id));
+            loadedDomain.Execute(
+                                 () =>
+                                     Log("Lambda's AppDomain: {0}",
+                                         AppDomain.CurrentDomain.Id));
+
+            Log("Executing unary function lambda in Loaded Domain");
+            var result = loadedDomain.Execute("Zulu",
+                name => new SomeType(name).Name);
+            Log("Result: {0}", result);
 
             Log("Unloading Loaded Domain");
             AppDomain.Unload(loadedDomain);

@@ -30,7 +30,7 @@ namespace ModernRonin.PraeterArtem.Reflection
         ///     The interface type denoted by <typeparamref name="T" />
         ///     MUST NOT be defined in your calling code's assembly, either.
         ///     Incidentally, this is also the reason why you must pass the type to be instantiated as a string
-        ///     to this method. 
+        ///     to this method.
         ///     Also, note that the type to be instantiated MUST be default constructable. While it would have been
         ///     entirely possible to allow parameterized construction, for many cases default construction and
         ///     object initializers are the better choice, anyway, and besides, non-default constructable types
@@ -70,7 +70,7 @@ namespace ModernRonin.PraeterArtem.Reflection
         /// }        
         /// </code>
         ///     CallingCode references SharedInterfaces and contains:
-        /// <code>
+        ///     <code>
         ///     const string fullPathToAssembly = "DynamicallyLoadedCode.dll";
         ///     const string namespaceQualifiedTypeName = "DynamicallyLoadedCode.SomeImplementation";
         ///     var remoteType = someDomain.CreateTypeInDomain{IRemoteType}(fullPathToAssembly, namespaceQualifiedTypeName);
@@ -91,6 +91,14 @@ namespace ModernRonin.PraeterArtem.Reflection
         public static void Execute(this AppDomain domain, Action action)
         {
             RemoteDomainExecutor.ExecuteIn(domain, action);
+        }
+        public static TResult Execute<TArgument, TResult>(
+            this AppDomain domain, TArgument argument,
+            Func<TArgument, TResult> function)
+        {
+            var result = RemoteDomainExecutor.ExecuteIn(domain, argument,
+                function);
+            return result;
         }
     }
 }
