@@ -136,5 +136,38 @@ namespace ModernRonin.PraeterArtem.UnitTests
                                                                    "delta"
                                                                });
         }
+        [Theory]
+        [InlineData(0, 0)] // a
+        [InlineData(1, 0)] // l
+        [InlineData(2, 0)] // p
+        [InlineData(3, 0)] // h
+        [InlineData(4, 0)] // a
+        [InlineData(5, 0)] // CR
+        [InlineData(6, 0)] // LF
+        [InlineData(7, 1)] // b
+        [InlineData(8, 1)] // r
+        [InlineData(9, 1)] // a
+        [InlineData(10, 1)] // v
+        [InlineData(11, 1)] // o
+        [InlineData(12, 1)] // CR
+        [InlineData(13, 1)] // LF
+        [InlineData(14, 2)] // CR
+        [InlineData(15, 2)] // LF
+        [InlineData(16, 3)] // c
+        [InlineData(17, 3)] // h
+        [InlineData(18, 3)] // a
+        [InlineData(19, 3)] // r
+        [InlineData(20, 3)] // l
+        [InlineData(21, 3)] // i
+        [InlineData(22, 3)] // e
+        [InlineData(23, 3)] // CR
+        [InlineData(24, 3)] // LF
+        [InlineData(25, 4)] // CR
+        [InlineData(26, 4)] // LF
+        public void LineNumberOfIndex(int index, int expected)
+        {
+            const string sample = "alpha\r\nbravo\r\n\r\ncharlie\r\n\r\n";
+            sample.LineNumberOfIndex(index).Should().Be(expected);
+        }
     }
 }
