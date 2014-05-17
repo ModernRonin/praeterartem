@@ -88,10 +88,25 @@ namespace ModernRonin.PraeterArtem.Reflection
             return TypeLoader.CreateTypeInDomain<T>(domain, assemblyFilePath,
                 concreteTypeName);
         }
+        /// <summary>
+        ///     Executes an action in another AppDomain.
+        ///     Note that any lambdas passed must be serializable. That implies they should
+        ///     not reference local variables of the method calling Execute. If the lambda
+        ///     accesses member fields of the calling method's class, that class must be marked
+        ///     as [Serializable].
+        /// </summary>
         public static void Execute(this AppDomain domain, Action action)
         {
             RemoteDomainExecutor.ExecuteIn(domain, action);
         }
+        /// <summary>
+        ///     Executes an function with a single parameter in another AppDomain and returns
+        ///     the result.
+        ///     Note that any lambdas passed must be serializable. That implies they should
+        ///     not reference local variables of the method calling Execute. If the lambda
+        ///     accesses member fields of the calling method's class, that class must be marked
+        ///     as [Serializable].
+        /// </summary>
         public static TResult Execute<TArgument, TResult>(
             this AppDomain domain, TArgument argument,
             Func<TArgument, TResult> function)
@@ -99,6 +114,18 @@ namespace ModernRonin.PraeterArtem.Reflection
             var result = RemoteDomainExecutor.ExecuteIn(domain, argument,
                 function);
             return result;
+        }
+        /// <summary>
+        ///     Executes an action with a parameter in another AppDomain.
+        ///     Note that any lambdas passed must be serializable. That implies they should
+        ///     not reference local variables of the method calling Execute. If the lambda
+        ///     accesses member fields of the calling method's class, that class must be marked
+        ///     as [Serializable].
+        /// </summary>
+        public static void Execute<T>(this AppDomain domain, T argument,
+                                      Action<T> action)
+        {
+            RemoteDomainExecutor.ExecuteIn(domain, argument, action);
         }
     }
 }

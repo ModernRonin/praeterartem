@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using ModernRonin.PraeterArtem.Functional;
 using ModernRonin.PraeterArtem.Reflection;
@@ -19,6 +21,29 @@ namespace DomainLoader
         public string Name { get; private set; }
     }
 
+    interface IMessageList : IEnumerable<string>
+    {
+        void Add(string msg);
+    }
+
+    [Serializable]
+    class MessageList : MarshalByRefObject, IMessageList
+    {
+        readonly List<string> mMessages = new List<string>();
+        public IEnumerator<string> GetEnumerator()
+        {
+            return mMessages.GetEnumerator();
+        }
+        public void Add(string msg)
+        {
+            mMessages.Add(msg);
+        }
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
+        }
+    }
+
     [Serializable]
     class Program
     {
@@ -29,6 +54,8 @@ namespace DomainLoader
             "mscorlib",
             "vshost32"
         };
+        readonly IMessageList mMessageList = new MessageList {"Lima"};
+        readonly StringWriter mStandardError = new StringWriter();
         void Run()
         {
             Log("Starting");
@@ -50,20 +77,54 @@ namespace DomainLoader
 
             remoteType.Execute(ListLoadedAssembliesInCurrentDomain);
 
-            Log("Executing lambda in Loaded Domain");
+            LogEndOfList();
+            Log("Executing nullary action lambda in Loaded Domain");
             loadedDomain.Execute(
                                  () =>
                                      Log("Lambda's AppDomain: {0}",
                                          AppDomain.CurrentDomain.Id));
 
+            LogEndOfList();
             Log("Executing unary function lambda in Loaded Domain");
             var result = loadedDomain.Execute("Zulu",
                 name => new SomeType(name).Name);
             Log("Result: {0}", result);
 
+            Log("Executing unary action lamba in Loaded Domain");
+            loadedDomain.Execute("Quebec", UseString);
+            LogEndOfList();
+
+            LogEndOfList();
+            Log("Sending interface as parameter to Loaded Domain");
+            loadedDomain.Execute(() => UseInterface(mMessageList));
+            Log("Result: {0}", string.Join(", ", mMessageList));
+            LogEndOfList();
+
+            Console.SetError(mStandardError);
+            Console.Error.Write("Oscar");
+            Log("Using redirected console in Loaded Domain");
+            remoteType.WriteError();
+            Log("Result: My StdErr: {0}, remoteType.Error: {1}",
+                mStandardError.ToString(), remoteType.Error);
+
+            LogEndOfList();
             Log("Unloading Loaded Domain");
             AppDomain.Unload(loadedDomain);
             ListLoadedDomains();
+        }
+        static void UseString(string text)
+        {
+            Log(
+                "UseString() being called in AppDomain #{0} with parameter {1}",
+                AppDomain.CurrentDomain.Id, text);
+        }
+        static void UseInterface(IMessageList list)
+        {
+            Log("UseInterface() being called in AppDomain #{0}",
+                AppDomain.CurrentDomain.Id);
+            if (null == list)
+                throw new ArgumentNullException("list");
+            list.Add("Mike");
         }
         void ListLoadedDomains()
         {
@@ -107,7 +168,7 @@ namespace DomainLoader
         {
             return sIgnorableAssemblyNamePatterns.Any(name.StartsWith);
         }
-        void LogEndOfList()
+        static void LogEndOfList()
         {
             Log("-------------------------------------------------------");
         }
@@ -117,7 +178,7 @@ namespace DomainLoader
             Console.WriteLine("Press Enter to end");
             Console.ReadLine();
         }
-        void Log(string format, params object[] args)
+        static void Log(string format, params object[] args)
         {
             Console.WriteLine(format, args);
         }
