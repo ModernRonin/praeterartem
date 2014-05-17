@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System.Security.Cryptography;
+using System.Text;
 using ModernRonin.PraeterArtem.Functional;
 
 namespace ModernRonin.PraeterArtem
@@ -18,6 +19,16 @@ namespace ModernRonin.PraeterArtem
         {
             var result = new StringBuilder();
             count.TimesExecute(() => result.Append(what));
+            return result.ToString();
+        }
+        /// <summary>
+        /// Creates an MD5 hash of the string in hexadecimal format. 
+        /// </summary>
+        public static string ToMd5Hash(this string rhs)
+        {
+            var asBytes = MD5.Create().ComputeHash(Encoding.UTF8.GetBytes(rhs));
+            var result = new StringBuilder(2 * asBytes.Length);
+            asBytes.UseIn(b => result.Append(b.ToString("x2")));
             return result.ToString();
         }
     }
