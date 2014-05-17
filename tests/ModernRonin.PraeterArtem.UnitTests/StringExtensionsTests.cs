@@ -82,7 +82,7 @@ namespace ModernRonin.PraeterArtem.UnitTests
         [InlineData("abcde", new[] {"x"}, -1)]
         [InlineData("abcde", new[] {"x", "y", "d"}, 3)]
         public void StartIndexOfAny(string input, string[] patterns,
-                                       int expected)
+                                    int expected)
         {
             input.StartIndexOfAny(patterns).Should().Be(expected);
         }
@@ -97,7 +97,7 @@ namespace ModernRonin.PraeterArtem.UnitTests
         [InlineData("abcde", new[] {"x"}, -1)]
         [InlineData("abcde", new[] {"x", "y", "z", "b"}, 2)]
         public void EndIndexOfAny(string input, string[] patterns,
-                                     int expected)
+                                  int expected)
         {
             input.EndIndexOfAny(patterns).Should().Be(expected);
         }
