@@ -68,6 +68,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="Reflection\AppDomainExtensionsTests.cs" />
+    <Compile Include="StringExtensionsTests.cs" />
     <Compile Include="_MetaAssertions_\IMetaAssertionsType.cs" />
     <Compile Include="_MetaAssertions_\MetaAssertionsProject.cs" />
     <Compile Include="_MetaAssertions_\MetaAssertionsType.cs" />
