@@ -101,5 +101,40 @@ namespace ModernRonin.PraeterArtem.UnitTests
         {
             input.EndIndexOfAny(patterns).Should().Be(expected);
         }
+        [Fact]
+        public void SplitIntoLines_For_Single_Line_Returns_That_Line()
+        {
+            "alpha".SplitIntoLines().Should().Equal("alpha");
+        }
+        [Fact]
+        public void SplitIntoLines_For_EmptyString_Returns_Empty_Enumerable()
+        {
+            string.Empty.SplitIntoLines().Should().BeEmpty();
+        }
+        [Fact]
+        public void SplitIntoLines_For_Multiple_Lines_Returns_All_Lines()
+        {
+            "alpha\rbravo\ncharlie\r\ndelta\n\recho".SplitIntoLines()
+                                                    .Should()
+                                                    .Equal(new[]
+                                                           {
+                                                               "alpha", "bravo",
+                                                               "charlie",
+                                                               "delta", "echo"
+                                                           });
+        }
+        [Fact]
+        public void SplitIntoLines_Removes_Empty_Lines()
+        {
+            "\r\nalpha\r\nbravo\r\rcharlie\n\ndelta\n\r".SplitIntoLines()
+                                                        .Should()
+                                                        .Equal(new[]
+                                                               {
+                                                                   "alpha",
+                                                                   "bravo",
+                                                                   "charlie",
+                                                                   "delta"
+                                                               });
+        }
     }
 }

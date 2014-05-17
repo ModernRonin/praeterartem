@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
@@ -108,6 +109,30 @@ namespace ModernRonin.PraeterArtem
         {
             var indexOfWhat = EndIndexOfAny(source, patterns);
             return 0 <= indexOfWhat ? source.From(indexOfWhat) : string.Empty;
+        }
+        /// <summary>
+        /// Splits <paramref name="text"/> into lines.
+        /// Both CR and LF count as line separators.
+        /// Empty lines are discarded.
+        /// </summary>
+        /// <param name="text"></param>
+        /// <returns></returns>
+        public static IEnumerable<string> SplitIntoLines(this string text)
+        {
+            return text.Split(new[] { "\n", "\r" },
+                StringSplitOptions.RemoveEmptyEntries);
+        }
+        /// <summary>
+        /// Interprets <paramref name="text"/> as concatenated lines (<see cref="SplitIntoLines"/> for details)
+        /// and returns the zero-based index of the line containing what in <paramref name="text"/> originally is
+        /// at character index <paramref name="index"/>.
+        /// </summary>
+        /// <param name="text"></param>
+        /// <param name="index"></param>
+        /// <returns></returns>
+        public static int LineNumberOfIndex(this string text, int index)
+        {
+            return 0;
         }
     }
 }
