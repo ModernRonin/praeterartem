@@ -30,16 +30,6 @@ namespace ModernRonin.PraeterArtem.Reflection
                 {typeof (float), "float"},
                 {typeof (double), "double"},
             };
-        /// <summary>Check whether an attribute is set for this member.</summary>
-        /// <remarks>Multiple attributes count as true, too. Also, attributes derived from <typeparamref name="T" /> count, too.s</remarks>
-        /// <returns>whether a custom attribute of member <typeparamref name="T" /> is set on <paramref name="member" /></returns>
-        public static bool HasAttribute<T>([NotNull] this MemberInfo member)
-            where T : Attribute
-        {
-            if (member == null)
-                throw new ArgumentNullException("member");
-            return Attribute.IsDefined(member, typeof (T));
-        }
         /// <summary>
         ///     Indicates whether there are any public methods declared for this type, excluding methods defined in base
         ///     classes.

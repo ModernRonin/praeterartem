@@ -24,7 +24,6 @@ namespace ModernRonin.PraeterArtem.UnitTests
 		[PropertyData("TypesToTest")]
 		public void Check([NotNull] IMetaAssertionsType type)
 		{
-			Console.WriteLine(type.ToString());
 			type.Check();
 		}
 	}

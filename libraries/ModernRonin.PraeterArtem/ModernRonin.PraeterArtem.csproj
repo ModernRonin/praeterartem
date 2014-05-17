@@ -93,6 +93,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Reflection\AppDomainExtensions.cs" />
     <Compile Include="Reflection\ArgumentActionWrapper.cs" />
+    <Compile Include="Reflection\MemberInfoExtensions.cs" />
     <Compile Include="Reflection\RemoteDomainExecutor.cs" />
     <Compile Include="Reflection\TypeExtensions.cs" />
     <Compile Include="Reflection\TypeInAppDomainCreator.cs" />

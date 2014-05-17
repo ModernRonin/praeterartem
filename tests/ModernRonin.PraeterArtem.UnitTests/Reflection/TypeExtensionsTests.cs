@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.Text;
 using FluentAssertions;
-using JetBrains.Annotations;
-using ModernRonin.PraeterArtem.Annotations;
 using ModernRonin.PraeterArtem.Reflection;
 using Xunit;
 using Xunit.Extensions;
@@ -12,21 +10,6 @@ namespace ModernRonin.PraeterArtem.UnitTests.Reflection
 {
     public sealed class TypeExtensionsTests
     {
-        [Fact]
-        public void HasAttribute_When_There_AreNo_Attributes_Returns_False()
-        {
-            typeof (TypeExtensionsTests)
-                .HasAttribute<DataTransferObjectAttribute>()
-                .Should()
-                .BeFalse();
-        }
-        [Fact]
-        public void HasAttribute_When_There_Is_Attribute_Returns_True()
-        {
-            typeof (WithPublicMethods).HasAttribute<UsedImplicitlyAttribute>()
-                                      .Should()
-                                      .BeTrue();
-        }
         [Fact]
         public void
             HasPublicMethods_When_There_Are_Public_Methods_Returns_True()
@@ -95,22 +78,6 @@ namespace ModernRonin.PraeterArtem.UnitTests.Reflection
                                        .Should()
                                        .Be(
                                            "Action<int, Dictionary<TypeExtensionsTests, LinkedList<bool>>, StringBuilder>");
-        }
-
-        [UsedImplicitly(ImplicitUseTargetFlags.WithMembers /* By reflection*/
-            )]
-        abstract class WithPublicMethods
-        {
-            public void A() {}
-            public static void B() {}
-        }
-
-        [UsedImplicitly(ImplicitUseTargetFlags.WithMembers /* By reflection*/
-            )]
-        sealed class WithoutPublicMethods : WithPublicMethods
-        {
-            void X() {}
-            static void Y() {}
         }
     }
 }

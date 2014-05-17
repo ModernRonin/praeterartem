@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Reflection;
 using JetBrains.Annotations;
+using ModernRonin.PraeterArtem.Functional;
 using Xunit.Sdk;
 
 namespace ModernRonin.PraeterArtem.UnitTests._MetaAssertions_
@@ -50,8 +51,9 @@ namespace ModernRonin.PraeterArtem.UnitTests._MetaAssertions_
 			mTypes.AddRange(from t in codeAssembly.GetTypes()
 				select new MetaAssertionsType(t, mTestAssembly));
 
-			mTypes.AddRange(from t in mTestAssembly.GetTypes()
-				select new MetaAssertionsType(t));
+			mTypes.AddRange(
+			                mTestAssembly.GetTypes().Where(t => t.Name.EndsWith("Tests"))
+			                             .Select(t => new MetaAssertionsType(t)));
 
 			mTypes.RemoveAll(t => ((MetaAssertionsType) t).IsCompilerGenerated);
 		}
