@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.30110.0
+VisualStudioVersion = 12.0.30501.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{7B54C0DD-0CBC-41C0-86EF-E8B6B298E026}"
 EndProject
@@ -24,6 +24,11 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharedInterfaces", "prototypes\SharedInterfaces\SharedInterfaces.csproj", "{015C5C2E-4629-4F1A-ABF0-AED290F77D6D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharedInterfacesForTestingRemoting", "tests\SharedInterfacesForTestingRemoting\SharedInterfacesForTestingRemoting.csproj", "{92C8CC94-5E50-459B-9670-7A669C49D5ED}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NuGetDefinitions", "NuGetDefinitions", "{B6F78C9C-2ABE-4837-AB9D-6F4825BF6AAE}"
+	ProjectSection(SolutionItems) = preProject
+		NuGetDefinitions\ModernRonin.PraeterArtem.1.1.15.nupkg = NuGetDefinitions\ModernRonin.PraeterArtem.1.1.15.nupkg
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -61,9 +66,10 @@ Global
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{571863C8-3152-4342-A14C-31E6F40308D0} = {7B54C0DD-0CBC-41C0-86EF-E8B6B298E026}
-		{92C8CC94-5E50-459B-9670-7A669C49D5ED} = {7B54C0DD-0CBC-41C0-86EF-E8B6B298E026}
 		{FBDCE26C-D240-4969-9517-1D2656411967} = {35A98193-B180-455F-BD4C-A532F4B305FE}
 		{41D0AE59-53F1-4C3C-9F84-9A2226B41D91} = {35A98193-B180-455F-BD4C-A532F4B305FE}
 		{015C5C2E-4629-4F1A-ABF0-AED290F77D6D} = {35A98193-B180-455F-BD4C-A532F4B305FE}
+		{92C8CC94-5E50-459B-9670-7A669C49D5ED} = {7B54C0DD-0CBC-41C0-86EF-E8B6B298E026}
+		{B6F78C9C-2ABE-4837-AB9D-6F4825BF6AAE} = {89D5AB6E-A132-493A-9715-5F52C6211ABE}
 	EndGlobalSection
 EndGlobal
