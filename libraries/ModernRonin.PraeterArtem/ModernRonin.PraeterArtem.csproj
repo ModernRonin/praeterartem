@@ -85,6 +85,7 @@
     <Compile Include="Annotations\ReSharper\UsedImplicitlyAttribute.cs" />
     <Compile Include="Annotations\VirtualAttribute.cs" />
     <Compile Include="Annotations\WpfSpecificAttribute.cs" />
+    <Compile Include="DateTimeExtensions.cs" />
     <Compile Include="Functional\ComparableExtensions.cs" />
     <Compile Include="Functional\EnumerableExtensions.cs" />
     <Compile Include="Functional\Functions.cs" />
