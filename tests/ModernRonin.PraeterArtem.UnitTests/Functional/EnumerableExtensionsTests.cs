@@ -11,16 +11,15 @@ namespace ModernRonin.PraeterArtem.UnitTests.Functional
 {
     public sealed class EnumerableExtensionsTests
     {
-		[Theory]
-		[InlineData(new int[] { }, true)]
-		[InlineData(new[] { 1, 2, 3 }, false)]
-		[InlineData(new[] { 1 }, false)]
+        [Theory]
+        [InlineData(new int[] {}, true)]
+        [InlineData(new[] {1, 2, 3}, false)]
+        [InlineData(new[] {1}, false)]
         public void IsEmpty([NotNull] int[] enumerable, bool expectedResult)
-		{
-			enumerable.IsEmpty().Should().Be(expectedResult);
-		}
-
-	    [Fact]
+        {
+            enumerable.IsEmpty().Should().Be(expectedResult);
+        }
+        [Fact]
         public void UseIn_Calls_Action_For_Each_Element()
         {
             var used = new List<int>();
@@ -38,7 +37,7 @@ namespace ModernRonin.PraeterArtem.UnitTests.Functional
             var sum = 0;
             new Action<int>[]
             {i => sum += i, i => sum += 10*i, i => sum += 100*i}.ExecuteOn(7);
-	        sum.Should().Be(777);
+            sum.Should().Be(777);
         }
         [Fact]
         public void ToEnumerable_Wraps_A_Single_Element_Into_An_IEnumerable()
@@ -179,7 +178,9 @@ namespace ModernRonin.PraeterArtem.UnitTests.Functional
                                        .Be("aa");
         }
         [Fact]
-        public void MinElement_On_Empty_ValueType_Enumerable_Returns_ValueTypeDefault()
+        public void
+            MinElement_On_Empty_ValueType_Enumerable_Returns_ValueTypeDefault
+            ()
         {
             Null.Enumerable<int>()
                 .MinElement(Functions.Identity<int>())
@@ -187,7 +188,8 @@ namespace ModernRonin.PraeterArtem.UnitTests.Functional
                 .Be(0);
         }
         [Fact]
-        public void MinElement_On_Empty_ReferenceType_Enumerable_Returns_Null()
+        public void MinElement_On_Empty_ReferenceType_Enumerable_Returns_Null
+            ()
         {
             Null.Enumerable<object>()
                 .MinElement(e => e.GetHashCode())
@@ -202,7 +204,9 @@ namespace ModernRonin.PraeterArtem.UnitTests.Functional
                                        .Be("abcd");
         }
         [Fact]
-        public void MaxElement_On_Empty_ValueType_Enumerable_Returns_ValueTypeDefault()
+        public void
+            MaxElement_On_Empty_ValueType_Enumerable_Returns_ValueTypeDefault
+            ()
         {
             Null.Enumerable<int>()
                 .MaxElement(Functions.Identity<int>())
@@ -238,20 +242,31 @@ namespace ModernRonin.PraeterArtem.UnitTests.Functional
         {
             Null.Enumerable<int>().Min(1).Should().Be(1);
         }
+        [Fact]
+        public void Split()
+        {
+            var input = new[] {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
+            input.Split(3)
+                 .ShouldAllBeEquivalentTo(new[]
+                                          {
+                                              new[] {0, 1, 2}, new[] {3, 4, 5},
+                                              new[] {6, 7, 8}, new[] {9}
+                                          });
+        }
 
-        /// <summary>
-        ///     An example for tree-like data structures.
-        /// </summary>
+        /// <summary>An example for tree-like data structures.</summary>
         sealed class TypeImplementingIEnumerableOfItself :
             IEnumerable<TypeImplementingIEnumerableOfItself>
         {
-            readonly IEnumerable<TypeImplementingIEnumerableOfItself> mChildren;
-            public TypeImplementingIEnumerableOfItself([CanBeNull] IEnumerable<TypeImplementingIEnumerableOfItself> children)
+            readonly IEnumerable<TypeImplementingIEnumerableOfItself>
+                mChildren;
+            public TypeImplementingIEnumerableOfItself(
+                [CanBeNull] IEnumerable<TypeImplementingIEnumerableOfItself>
+                    children)
             {
-	            mChildren = children;
+                mChildren = children;
             }
-
-	        public IEnumerator<TypeImplementingIEnumerableOfItself>
+            public IEnumerator<TypeImplementingIEnumerableOfItself>
                 GetEnumerator()
             {
                 return mChildren.GetEnumerator();
