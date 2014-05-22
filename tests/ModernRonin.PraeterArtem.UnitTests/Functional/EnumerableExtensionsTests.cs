@@ -253,6 +253,12 @@ namespace ModernRonin.PraeterArtem.UnitTests.Functional
                                               new[] {6, 7, 8}, new[] {9}
                                           });
         }
+        [Fact]
+        public void ToStrings()
+        {
+            new[] {1, 2, 3}.ToStrings()
+                           .ShouldAllBeEquivalentTo(new[] {"1", "2", "3"});
+        }
 
         /// <summary>An example for tree-like data structures.</summary>
         sealed class TypeImplementingIEnumerableOfItself :
