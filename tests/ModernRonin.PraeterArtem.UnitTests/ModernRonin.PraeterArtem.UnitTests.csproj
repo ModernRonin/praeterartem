@@ -58,6 +58,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DateTimeExtensionsTests.cs" />
+    <Compile Include="Functional\CollectionExtensionsTests.cs" />
     <Compile Include="Functional\ComparableExtensionsTests.cs" />
     <Compile Include="Functional\EnumerableExtensionsTests.cs" />
     <Compile Include="Functional\FunctionsTests.cs" />

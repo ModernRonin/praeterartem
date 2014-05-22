@@ -317,9 +317,7 @@ namespace ModernRonin.PraeterArtem.Functional
                  rest = rest.Skip(chunkSize).ToArray())
                 yield return rest.Take(chunkSize);
         }
-        /// <summary>
-        /// Returns an enumeration of all elements .ToString().
-        /// </summary>
+        /// <summary>Returns an enumeration of all elements .ToString().</summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="enumerable"></param>
         /// <returns></returns>
