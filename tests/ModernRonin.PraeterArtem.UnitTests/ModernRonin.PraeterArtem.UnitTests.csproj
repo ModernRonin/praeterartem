@@ -73,7 +73,11 @@
     <Compile Include="Reflection\MemberInfoExtensionsTests.cs" />
     <Compile Include="Reflection\WithoutPublicMethods.cs" />
     <Compile Include="Reflection\WithPublicMethods.cs" />
+    <Compile Include="Scheduling\AThrottlingConfigurableTests.cs" />
+    <Compile Include="Scheduling\ProcessorTests.cs" />
+    <Compile Include="Scheduling\ThrottlingSchedulerTests.cs" />
     <Compile Include="StringExtensionsTests.cs" />
+    <Compile Include="UtcTimeGiverTests.cs" />
     <Compile Include="_MetaAssertions_\IMetaAssertionsType.cs" />
     <Compile Include="_MetaAssertions_\MetaAssertionsProject.cs" />
     <Compile Include="_MetaAssertions_\MetaAssertionsType.cs" />

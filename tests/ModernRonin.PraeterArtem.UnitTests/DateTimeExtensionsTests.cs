@@ -8,16 +8,6 @@ namespace ModernRonin.PraeterArtem.UnitTests
 {
     public sealed class DateTimeExtensionsTests
     {
-        [Theory]
-        [PropertyData("WindowsToUnixTestCases")]
-        public void SpecificLocalTimeToUnixTime(DateTime windows, int unix)
-        {
-            Console.WriteLine(windows);
-            Console.WriteLine(windows.IsDaylightSavingTime());
-            Console.WriteLine(windows.ToUniversalTime());
-            Console.WriteLine(windows.ToUniversalTime().IsDaylightSavingTime());
-            windows.ToUnixTime().Should().Be(unix);
-        }
         public static IEnumerable<object[]> WindowsToUnixTestCases
         {
             get
@@ -33,6 +23,18 @@ namespace ModernRonin.PraeterArtem.UnitTests
             }
         }
         [Theory]
+        [PropertyData("WindowsToUnixTestCases")]
+        public void SpecificLocalTimeToUnixTime(DateTime windows, int unix)
+        {
+            Console.WriteLine(windows);
+            Console.WriteLine(windows.IsDaylightSavingTime());
+            Console.WriteLine(windows.ToUniversalTime());
+            Console.WriteLine(
+                              windows.ToUniversalTime()
+                                     .IsDaylightSavingTime());
+            windows.ToUnixTime().Should().Be(unix);
+        }
+        [Theory]
         [InlineData(740125382)]
         public void RoundTrip(int input)
         {
@@ -43,9 +45,11 @@ namespace ModernRonin.PraeterArtem.UnitTests
         [Fact]
         public void RoundTripWithSpecificTimeZone()
         {
-            var input = new DateTime(2012, 2, 15, 13, 33, 17, DateTimeKind.Local);
+            var input = new DateTime(2012, 2, 15, 13, 33, 17,
+                DateTimeKind.Local);
             var unix = input.ToUnixTime();
-            var output = DateTimeExtensions.FromUnixTimeToUtc(unix).ToLocalTime();
+            var output =
+                DateTimeExtensions.FromUnixTimeToUtc(unix).ToLocalTime();
             output.Should().Be(input);
         }
         [Theory]
@@ -53,9 +57,9 @@ namespace ModernRonin.PraeterArtem.UnitTests
         public void SpecificUnixTimeToLocalTime(DateTime windows, int unix)
         {
             var output = DateTimeExtensions.FromUnixTimeToUtc(unix);
-            if (windows.Kind != DateTimeKind.Utc) windows = windows.ToUniversalTime();
+            if (windows.Kind != DateTimeKind.Utc)
+                windows = windows.ToUniversalTime();
             output.Should().Be(windows);
         }
-        
     }
 }
