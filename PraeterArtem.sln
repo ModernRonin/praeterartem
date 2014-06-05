@@ -27,7 +27,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharedInterfacesForTestingR
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NuGetDefinitions", "NuGetDefinitions", "{B6F78C9C-2ABE-4837-AB9D-6F4825BF6AAE}"
 	ProjectSection(SolutionItems) = preProject
-		NuGetDefinitions\ModernRonin.PraeterArtem.1.1.15.nupkg = NuGetDefinitions\ModernRonin.PraeterArtem.1.1.15.nupkg
+		NuGetDefinitions\ModernRonin.PraeterArtem.1.2.0.nupkg = NuGetDefinitions\ModernRonin.PraeterArtem.1.2.0.nupkg
 	EndProjectSection
 EndProject
 Global
