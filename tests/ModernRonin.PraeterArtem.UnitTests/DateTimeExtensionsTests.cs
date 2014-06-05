@@ -14,12 +14,11 @@ namespace ModernRonin.PraeterArtem.UnitTests
             {
                 yield return
                     new object[]
-                    {new DateTime(2013, 6, 8, 18, 0, 0), 1370707200};
+                    {new DateTime(2013, 6, 8, 18, 0, 0, DateTimeKind.Utc).ToLocalTime(), 1370707200};
                 yield return
-                    new object[] {new DateTime(1970, 1, 3, 4, 5, 6), 183906};
+                    new object[] { new DateTime(1970, 1, 3, 4, 5, 6, DateTimeKind.Utc).ToLocalTime(), 183906 };
                 yield return
-                    new object[]
-                    {new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc), 0};
+                    new object[] { new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc).ToLocalTime(), 0 };
             }
         }
         [Theory]
