@@ -12,26 +12,20 @@ namespace ModernRonin.PraeterArtem.UnitTests
         {
             get
             {
-                yield return
-                    new object[]
-                    {new DateTime(2013, 6, 8, 18, 0, 0, DateTimeKind.Utc).ToLocalTime(), 1370707200};
-                yield return
-                    new object[] { new DateTime(1970, 1, 3, 4, 5, 6, DateTimeKind.Utc).ToLocalTime(), 183906 };
-                yield return
-                    new object[] { new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc).ToLocalTime(), 0 };
+                yield return new object[] { new DateTime(2013, 6, 8, 18, 0, 0, DateTimeKind.Utc).ToLocalTime(), 1370714400 };
+                yield return new object[] { new DateTime(1970, 1, 3, 4, 5, 6, DateTimeKind.Utc).ToLocalTime(), 187506 };
+                yield return new object[] { new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc), 0 };
             }
         }
         [Theory]
         [PropertyData("WindowsToUnixTestCases")]
-        public void SpecificLocalTimeToUnixTime(DateTime windows, int unix)
+        public void SpecificLocalTimeToUnixTime(DateTime clrDateTime, int unix)
         {
-            Console.WriteLine(windows);
-            Console.WriteLine(windows.IsDaylightSavingTime());
-            Console.WriteLine(windows.ToUniversalTime());
-            Console.WriteLine(
-                              windows.ToUniversalTime()
-                                     .IsDaylightSavingTime());
-            windows.ToUnixTime().Should().Be(unix);
+            Console.WriteLine(clrDateTime);
+            Console.WriteLine(clrDateTime.IsDaylightSavingTime());
+            Console.WriteLine(clrDateTime.ToUniversalTime());
+            Console.WriteLine(clrDateTime.ToUniversalTime().IsDaylightSavingTime());
+            clrDateTime.ToUnixTime().Should().Be(unix);
         }
         [Theory]
         [InlineData(740125382)]
@@ -53,12 +47,12 @@ namespace ModernRonin.PraeterArtem.UnitTests
         }
         [Theory]
         [PropertyData("WindowsToUnixTestCases")]
-        public void SpecificUnixTimeToLocalTime(DateTime windows, int unix)
+        public void SpecificUnixTimeToLocalTime(DateTime clrDateTime, int unix)
         {
             var output = DateTimeExtensions.FromUnixTimeToUtc(unix);
-            if (windows.Kind != DateTimeKind.Utc)
-                windows = windows.ToUniversalTime();
-            output.Should().Be(windows);
+            if (clrDateTime.Kind != DateTimeKind.Utc)
+                clrDateTime = clrDateTime.ToUniversalTime();
+            output.Should().Be(clrDateTime);
         }
     }
 }
