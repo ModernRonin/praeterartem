@@ -65,7 +65,7 @@ namespace ModernRonin.PraeterArtem.Scheduling
             lock (mLocker)
             {
                 var started = mTimeGiver.Now;
-                mHistory.Add(started, TimeSpan.FromMilliseconds(0));
+                mHistory[started]= TimeSpan.FromMilliseconds(0);
                 var watch = new Stopwatch();
                 watch.Start();
                 request(mWrappedProcessor);
