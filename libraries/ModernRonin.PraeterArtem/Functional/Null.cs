@@ -25,5 +25,18 @@ namespace ModernRonin.PraeterArtem.Functional
 	    {
 		    return _ => { };
 	    }
+        [NotNull]
+        public static Action<U, V> Action<U, V>()
+        {
+            return (u, v) => { };
+        }
+        public static Predicate<T> True<T>()
+        {
+            return _ => true;
+        }
+        public static Predicate<T> False<T>()
+        {
+            return _ => false;
+        }
     }
 }
