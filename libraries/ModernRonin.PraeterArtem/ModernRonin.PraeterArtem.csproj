@@ -96,6 +96,7 @@
     <Compile Include="Functional\IntegerExtensions.cs" />
     <Compile Include="Functional\Null.cs" />
     <Compile Include="ITimeGiver.cs" />
+    <Compile Include="LocalTimeGiver.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Reflection\AppDomainExtensions.cs" />
     <Compile Include="Reflection\ArgumentActionWrapper.cs" />

@@ -64,6 +64,7 @@
     <Compile Include="Functional\FunctionsTests.cs" />
     <Compile Include="Functional\IntegerExtensionsTests.cs" />
     <Compile Include="Functional\NullTests.cs" />
+    <Compile Include="LocalTimeGiverTests.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
