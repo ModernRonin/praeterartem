@@ -6,8 +6,6 @@ namespace ModernRonin.PraeterArtem.Functional
 {
     public static class Null
     {
-		// Ilya: Delete this. There is Enumerable.Empty<T>()
-		// which resharper finds if you press Control+Alt+Space
 	    [NotNull]
 	    public static IEnumerable<T> Enumerable<T>()
 	    {

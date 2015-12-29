@@ -5,9 +5,6 @@ using JetBrains.Annotations;
 
 namespace ModernRonin.PraeterArtem.Functional
 {
-    // Ilya: It's very important to have VERY intuitive names here
-    // otherwise noone is going to use it. I'd even said if there's 
-    // no superb name for some stuff there's no way to add it here
     /// <summary>Contains extension methods for <see cref="IEnumerable{T}"/>
     /// supporting a functional coding style.</summary>
     public static class EnumerableExtensions
@@ -19,7 +16,6 @@ namespace ModernRonin.PraeterArtem.Functional
             return !enumerable.Any();
         }
 
-        // Ilya: I'd propose to call it "Foreach". The name that is really intuitive
         /// <summary>Passes each argument of <paramref name="enumerable"/> to
         /// <paramref name="action"/>.</summary>
         public static void UseIn<T>([NotNull] this IEnumerable<T> enumerable,
@@ -78,10 +74,6 @@ namespace ModernRonin.PraeterArtem.Functional
             enumerable.UseIn(destination.Add);
         }
 
-        // Ilya:
-        // I'm not sure that "blah.ExceptNullValues()" 
-        // is better then    "blah.Where(e => e != null)"
-        // not much shorter either.
         /// <summary>Returns all elements which are not null.</summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="enumerable"></param>
@@ -93,9 +85,7 @@ namespace ModernRonin.PraeterArtem.Functional
             return enumerable.Where(e => null != e);
         }
 
-        // Ilya: in general I'm afraid that seeing 
-        // "items.ButFirst()" would freak me out
-        // why not "items.Skip(1)" I would think?!
+        
         /// <summary>Returns all elements except the first.</summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="enumerable"></param>
@@ -262,8 +252,6 @@ namespace ModernRonin.PraeterArtem.Functional
             return enumerable.MinElement(e => -evaluator(e));
         }
 
-        // Ilya: elements.Min(5) is a bit obscure.
-        // May be elements.MinOrDefault(5)?
         /// <summary>
         /// Overload for the BCL .Min() method which allows to pass a value to
         /// be used in case

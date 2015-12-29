@@ -7,3 +7,4 @@ obj
 *.ncrunchsolution
 *.cache
 /_NCrunch_*/
+/tests/ModernRonin.PraeterArtem.UnitTests/nCrunchTemp_273bbba1-f2c9-4c02-9bc2-f4e91a13b848
