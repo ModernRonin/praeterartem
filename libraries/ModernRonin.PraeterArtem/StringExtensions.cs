@@ -141,5 +141,25 @@ namespace ModernRonin.PraeterArtem
                 --result;
             return result;
         }
+        /// <summary>
+        /// Returns the string after the first character.
+        /// (If the string is null, null is returned. If it is empty, empty is returned.)
+        /// </summary>
+        /// <param name="self"></param>
+        /// <returns></returns>
+        public static string ButFirst(this string self)
+        {
+            return string.IsNullOrEmpty(self) ? self : self.Substring(1);
+        }
+        /// <summary>
+        /// Returns the string before the last character.
+        /// (If the string is null, null is returned. If it is empty, empty is returned.)
+        /// </summary>
+        /// <param name="self"></param>
+        /// <returns></returns>
+        public static string ButLast(this string self)
+        {
+            return string.IsNullOrEmpty(self) ? self : self.Substring(0, self.Length - 1);
+        }
     }
 }
